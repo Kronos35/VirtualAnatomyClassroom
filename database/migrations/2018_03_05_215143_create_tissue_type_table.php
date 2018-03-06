@@ -15,6 +15,9 @@ class CreateTissueTypeTable extends Migration
     {
         Schema::create('tissue_type', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->integer('tissue_type_id');
+            $table->text('description');
             $table->timestamps();
         });
     }
