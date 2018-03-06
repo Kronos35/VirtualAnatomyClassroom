@@ -15,6 +15,8 @@ class TissueController extends Controller
     public function index()
     {
         //
+        $tissues=Tissue::get();
+        return $tissues;
     }
 
     /**
@@ -47,6 +49,8 @@ class TissueController extends Controller
     public function show(Tissue $tissue)
     {
         //
+        dd($tissue);
+        return $tissue;
     }
 
     /**
