@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTissueTypeTable extends Migration
+class CreateTissueTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateTissueTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('tissue_type', function (Blueprint $table) {
+        Schema::create('tissue_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('tissue_type_id');
             $table->text('description');
             $table->timestamps();
         });
@@ -29,6 +28,6 @@ class CreateTissueTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tissue_type');
+        Schema::dropIfExists('tissue_types');
     }
 }
