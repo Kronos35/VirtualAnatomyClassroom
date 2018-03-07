@@ -15,6 +15,8 @@ class TissueTypeController extends Controller
     public function index()
     {
         //
+        $tissueTypes=TissueType::all();
+        return $tissueTypes->toJson();
     }
 
     /**
@@ -36,6 +38,7 @@ class TissueTypeController extends Controller
     public function store(Request $request)
     {
         //
+        $this->update($request, null);
     }
 
     /**
@@ -47,6 +50,7 @@ class TissueTypeController extends Controller
     public function show(TissueType $tissueType)
     {
         //
+        return $tissueType->toJson();
     }
 
     /**
