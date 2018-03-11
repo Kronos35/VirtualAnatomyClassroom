@@ -22,10 +22,13 @@ class TissueController extends Controller
     {
         //
         $user=Auth::user();
-        $tissues=Tissue::all();
-        return View::make('tissues.list')
-        ->with('controllerUrl',$this->controllerUrl)
-        ->with('tissues',$tissues);
+        if($user){
+            $tissues=Tissue::all();
+            return View::make('tissues.list')
+            ->with('controllerUrl',$this->controllerUrl)
+            ->with('tissues',$tissues);
+        }
+        return redirect('/login');
     }
 
     /**
@@ -64,7 +67,7 @@ class TissueController extends Controller
             ->with('controllerUrl',$this->controllerUrl)
             ->with('tissue',$tissue);
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -88,7 +91,7 @@ class TissueController extends Controller
             ->with('controllerUrl',$this->controllerUrl);
             $user=Auth::user();
         }
-        return redirect('/');
+        return redirect('/login');
     }
 
     /**

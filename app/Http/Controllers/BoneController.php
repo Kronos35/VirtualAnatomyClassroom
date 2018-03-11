@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\View;
 
 class BoneController extends Controller
 {
-    private $controllerUrl = '/tissues';
+    private $controllerUrl = '/bones';
     /**
      * Display a listing of the resource.
      *
@@ -19,12 +19,12 @@ class BoneController extends Controller
     {
         //
         if (Auth::user()) {
-            $tissue=Tissue::where('tissue_type_id',1)->get();
-            return View::make('tissues.list')
+            $bones=Tissue::where('tissue_type_id',1)->get();
+            return View::make('bones.list')
             ->with('controllerUrl',$this->controllerUrl)
-            ->with('tissues',$tissue);
+            ->with('bones',$bones);
         }
-        return redirect('/');
+        return redirect('/login');
     }
 
     /**

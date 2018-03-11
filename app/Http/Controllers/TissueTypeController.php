@@ -27,7 +27,7 @@ class TissueTypeController extends Controller
             ->with('controllerUrl',$this->controllerUrl)
             ->with('tissueTypes',$tissueTypes);
         }
-        return redirect('/');
+        return redirect('/login');
     }
 
     /**
@@ -90,7 +90,7 @@ class TissueTypeController extends Controller
             ->with('tissueTypes',$tissueTypes)
             ->with('controllerUrl',$this->controllerUrl);
         }
-        return redirect('/');
+        return redirect('/login');
 
     }
 

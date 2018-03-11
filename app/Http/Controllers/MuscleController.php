@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\View;
 
 class MuscleController extends Controller
 {
+    private $controllerUrl = '/muscles';
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +18,13 @@ class MuscleController extends Controller
     public function index()
     {
         //
-        $muscles=Tissue::where('tissue_type_id', 2)->get();
-        return $muscles->toJson();
+        if (Auth::user()) {
+            $muscles=Tissue::where('tissue_type_id',1)->get();
+            return View::make('muscles.list')
+            ->with('controllerUrl',$this->controllerUrl)
+            ->with('muscles',$muscles);
+        }
+        return redirect('/login');
     }
 
     /**
