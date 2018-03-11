@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Tissue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 class TissueController extends Controller
 {
+    private $controllerUrl = '/tissues';
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +18,11 @@ class TissueController extends Controller
     public function index()
     {
         //
+        $user=Auth::user();
         $tissues=Tissue::all();
-        return $tissues->toJson();
+        return View::make('tissues.list')
+        ->with('controllerUrl',$this->controllerUrl)
+        ->with('tissues',$tissues);
     }
 
     /**
@@ -24,9 +30,10 @@ class TissueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        return $this->edit($request,null);
     }
 
     /**
@@ -37,7 +44,7 @@ class TissueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
         $this->update($request, null);
     }
 
@@ -50,7 +57,8 @@ class TissueController extends Controller
     public function show(Tissue $tissue)
     {
         //
-        return $tissue->toJson();
+        return View::make('tissues.show')
+            ->with('tissue',$tissue);
     }
 
     /**
@@ -59,9 +67,13 @@ class TissueController extends Controller
      * @param  \App\Tissue  $tissue
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tissue $tissue)
+    public function edit(Request $request, Tissue $tissue=null)
     {
         //
+        $user=Auth::user();
+        return View::make('tissues.create')
+        ->with('record',$tissue)
+        ->with('controllerUrl',$this->controllerUrl);
     }
 
     /**
@@ -71,9 +83,27 @@ class TissueController extends Controller
      * @param  \App\Tissue  $tissue
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tissue $tissue)
+    public function update(Request $request, $id=null)
     {
         //
+        $user=Auth::user();
+        if ($id) {
+            $tissue=Tissue::find($id);
+        } else {
+            $tissue=new Tissue;
+        }
+
+        $this->validate($request, [
+            'name'=>'required|max:191',
+            'tissue_type'=>'required',
+            'content'=>'required',
+            'description'=>'required',
+        ]);
+        $tissue->name=$request->name;
+        $tissue->tissue_type_id=$request->tissue_type;
+        $tissue->content=$request->content;
+        $tissue->description=$request->description;
+        $tissue->save();
     }
 
     /**

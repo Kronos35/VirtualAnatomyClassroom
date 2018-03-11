@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('tissues', 'TissueController');
 Route::resource('tissue_types', 'TissueTypeController');
+Route::resource('muscles', 'MuscleController');
+Route::resource('bones', 'MuscleController');

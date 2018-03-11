@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Tissue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 class MuscleController extends Controller
 {
@@ -15,6 +17,8 @@ class MuscleController extends Controller
     public function index()
     {
         //
+        $muscles=Tissue::where('tissue_type_id', 2)->get();
+        return $muscles->toJson();
     }
 
     /**

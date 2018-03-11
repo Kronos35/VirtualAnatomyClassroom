@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\TissueType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 class TissueTypeController extends Controller
 {
+    private $controllerUrl = '/tissue_types';
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +18,11 @@ class TissueTypeController extends Controller
     public function index()
     {
         //
+        $user=Auth::user();
         $tissueTypes=TissueType::all();
-        return $tissueTypes->toJson();
+        return View::make('tissue_types.list')
+        ->with('controllerUrl',$this->controllerUrl)
+        ->with('tissueTypes',$tissueTypes);
     }
 
     /**
@@ -27,6 +33,7 @@ class TissueTypeController extends Controller
     public function create()
     {
         //
+        return $this->edit($request,null);
     }
 
     /**
@@ -50,7 +57,9 @@ class TissueTypeController extends Controller
     public function show(TissueType $tissueType)
     {
         //
-        return $tissueType->toJson();
+        return View::make('tissue_types.show')
+            ->with('tissueType',$tissueType)
+            ->with('controllerUrl',$this->controllerUrl);
     }
 
     /**
@@ -62,6 +71,10 @@ class TissueTypeController extends Controller
     public function edit(TissueType $tissueType)
     {
         //
+        $user=Auth::user();
+        return View::make('tissue_types.create')
+        ->with('record',$tissueType)
+        ->with('controllerUrl',$this->controllerUrl);
     }
 
     /**
