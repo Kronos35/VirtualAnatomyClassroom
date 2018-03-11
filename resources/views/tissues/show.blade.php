@@ -5,7 +5,16 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h3>{{$tissue->name}}</h3></div>
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col col-md-10">
+                            <h3>{{$tissue->name}}</h3>
+                        </div> 
+                        <div class="col">
+                            <a class="btn btn-primary" href="{{ URL::to($controllerUrl) }}/{{$tissue->id}}/edit">Edit</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-body">
                     <h4> Content: </h4>
                     {{$tissue->content}}

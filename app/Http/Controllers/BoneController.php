@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Tissue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 class BoneController extends Controller
 {
+    private $controllerUrl = '/tissues';
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +18,13 @@ class BoneController extends Controller
     public function index()
     {
         //
+        if (Auth::user()) {
+            $tissue=Tissue::where('tissue_type_id',1)->get();
+            return View::make('tissues.list')
+            ->with('controllerUrl',$this->controllerUrl)
+            ->with('tissues',$tissue);
+        }
+        return redirect('/');
     }
 
     /**
@@ -25,6 +35,7 @@ class BoneController extends Controller
     public function create()
     {
         //
+
     }
 
     /**

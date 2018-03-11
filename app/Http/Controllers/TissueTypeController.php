@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\TissueType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Session;
 
 class TissueTypeController extends Controller
 {
@@ -19,10 +21,13 @@ class TissueTypeController extends Controller
     {
         //
         $user=Auth::user();
-        $tissueTypes=TissueType::all();
-        return View::make('tissue_types.list')
-        ->with('controllerUrl',$this->controllerUrl)
-        ->with('tissueTypes',$tissueTypes);
+        if ($user) {
+            $tissueTypes=TissueType::all();
+            return View::make('tissue_types.list')
+            ->with('controllerUrl',$this->controllerUrl)
+            ->with('tissueTypes',$tissueTypes);
+        }
+        return redirect('/');
     }
 
     /**
@@ -30,7 +35,7 @@ class TissueTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
         return $this->edit($request,null);
@@ -68,13 +73,25 @@ class TissueTypeController extends Controller
      * @param  \App\TissueType  $tissueType
      * @return \Illuminate\Http\Response
      */
-    public function edit(TissueType $tissueType)
+    public function edit(Request $request, TissueType $tissueType=null)
     {
         //
         $user=Auth::user();
-        return View::make('tissue_types.create')
-        ->with('record',$tissueType)
-        ->with('controllerUrl',$this->controllerUrl);
+        if ($user) {
+            $tissue_types=TissueType::get(['id','name']);
+        
+            $tissueTypes=[];
+            $tissueTypes['']='Select';
+            foreach ($tissue_types->toArray() as $tt) {
+                $tissueTypes[$tt['id']]=$tt['name'];
+            }
+            return View::make('tissue_types.create')
+            ->with('record',$tissueType)
+            ->with('tissueTypes',$tissueTypes)
+            ->with('controllerUrl',$this->controllerUrl);
+        }
+        return redirect('/');
+
     }
 
     /**
@@ -84,9 +101,27 @@ class TissueTypeController extends Controller
      * @param  \App\TissueType  $tissueType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TissueType $tissueType)
+    public function update(Request $request, $id=null)
     {
         //
+        $user=Auth::user();
+        if ($id) {
+            $tissue_type=TissueType::find($id);
+        } else {
+            $tissue_type=new TissueType;
+        }
+
+        $this->validate($request, [
+            'name'=>'required|max:191',
+            'description'=>'required',
+        ]);
+        $tissue_type->name=$request->name;
+        $tissue_type->tissue_type_id=$request->tissue_type_id;
+        $tissue_type->description=$request->description;
+        $tissue_type->save();
+
+        //redirect
+        return redirect($this->controllerUrl);
     }
 
     /**

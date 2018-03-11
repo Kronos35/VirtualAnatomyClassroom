@@ -29,7 +29,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li><a href="/home" class="nav-link">Home</a></li>
-                        <li><a href="/tissues" class="nav-link">Tissue</a></li>
+                        <li><a href="/tissues" class="nav-link">Tissues</a></li>
                         <li><a href="/tissue_types" class="nav-link">Tissue Types</a></li>
                         <li><a href="/bones" class="nav-link">Bones</a></li>
                         <li><a href="/muscles" class="nav-link">Muscles</a></li>

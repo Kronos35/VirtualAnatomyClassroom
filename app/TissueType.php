@@ -15,4 +15,12 @@ class TissueType extends Model
     {
         return $this->hasMany('App\Tissue');
     }
+    public function tissue_types()
+    {
+        return $this->hasMany('App\TissueType');
+    }
+    public function tissue_type()
+    {
+        return $this->belongsTo('App\TissueType');
+    }
 }

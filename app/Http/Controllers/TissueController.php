@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Tissue;
+use App\TissueType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Session;
 
 class TissueController extends Controller
 {
@@ -58,6 +61,7 @@ class TissueController extends Controller
     {
         //
         return View::make('tissues.show')
+            ->with('controllerUrl',$this->controllerUrl)
             ->with('tissue',$tissue);
     }
 
@@ -71,9 +75,20 @@ class TissueController extends Controller
     {
         //
         $user=Auth::user();
-        return View::make('tissues.create')
-        ->with('record',$tissue)
-        ->with('controllerUrl',$this->controllerUrl);
+        if ($user) {
+            $tissue_types=TissueType::get(['id','name']);
+            $tissueTypes=[];
+            $tissueTypes['']='Select';
+            foreach ($tissue_types->toArray() as $tt) {
+                $tissueTypes[$tt['id']]=$tt['name'];
+            }
+            return View::make('tissues.create')
+            ->with('tissueTypes',$tissueTypes)
+            ->with('record',$tissue)
+            ->with('controllerUrl',$this->controllerUrl);
+            $user=Auth::user();
+        }
+        return redirect('/');
     }
 
     /**
@@ -95,15 +110,18 @@ class TissueController extends Controller
 
         $this->validate($request, [
             'name'=>'required|max:191',
-            'tissue_type'=>'required',
+            'tissue_type_id'=>'required',
             'content'=>'required',
             'description'=>'required',
         ]);
         $tissue->name=$request->name;
-        $tissue->tissue_type_id=$request->tissue_type;
+        $tissue->tissue_type_id=$request->tissue_type_id;
         $tissue->content=$request->content;
         $tissue->description=$request->description;
         $tissue->save();
+
+        //redirect
+        return redirect($this->controllerUrl);
     }
 
     /**
@@ -115,5 +133,6 @@ class TissueController extends Controller
     public function destroy(Tissue $tissue)
     {
         //
+        $tissue->delete();
     }
 }

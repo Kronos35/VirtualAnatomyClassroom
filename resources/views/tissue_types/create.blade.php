@@ -20,18 +20,14 @@
                     </div>
                     <br>
                     <div class="form-group {{ $errors->has('tissue_type') ? 'has-danger' : '' }}">
-                        {{Form::label('tissue_type', 'Tissue Type')}}:
-                        {{Form::select('tissue_type',[
-                            ''=>'Select',
-                            1=>'Bones',
-                            2=>'Muscle'
-                        ],null, array('class' => $errors->has('name') ? 'form-control  is-invalid' : 'form-control'))}}
-                        {!! $errors->first('tissue_type', '<p class="invalid-feedback">:message</p>') !!}
+                        {{Form::label('tissue_type_id', 'Tissue Type')}}:
+                        {{Form::select('tissue_type_id',$tissueTypes, null, array('class' => $errors->has('tissue_type_id') ? 'form-control is-invalid' : 'form-control'))}}
+                        {!! $errors->first('tissue_type_id', '<p class="invalid-feedback">:message</p>') !!}
                     </div>
                     <br>
                     <div class="form-group {{ $errors->has('description') ? 'has-danger' : '' }}">
                         {{Form::label('description', 'Description')}}:
-                        {{ Form::textarea('description', null, array('class' => $errors->has('name') ? 'form-control  is-invalid' : 'form-control')) }}
+                        {{ Form::textarea('description', null, array('class' => $errors->has('description') ? 'form-control  is-invalid' : 'form-control')) }}
                         {!! $errors->first('description', '<p class="invalid-feedback">:message</p>') !!}
                     </div>
                     <br>
@@ -41,7 +37,7 @@
                         </button>
                     @else
                         <button type="submit" class="btn btn-primary">
-                            Save
+                            Create
                         </button>
                     @endif
                     <a class="btn btn-default" href="{{ URL::to($controllerUrl) }}">Cancel</a>
