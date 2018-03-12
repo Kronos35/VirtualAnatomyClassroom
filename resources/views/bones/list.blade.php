@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col col-md-10">
-                            <h3>Bones' List</h3>
+                            Bones' List
                         </div>
                         <div class="col">
                             <a class="btn btn-primary" href="{{ URL::to($controllerUrl) }}/create">Create</a>

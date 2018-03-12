@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col col-md-10">
-                            <h3>{{$tissueType->name}}</h3>
+                            {{$tissueType->name}}
                         </div> 
                         <div class="col">
                             <a class="btn btn-primary" href="{{ URL::to($controllerUrl) }}/{{$tissueType->id}}/edit">Edit</a>
@@ -16,12 +16,12 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <h4>Description: </h4>
+                    Description: 
                     {{$tissueType->description}}
                     <br>
                     <br>
                     @if(isset($tissueType->tissue_type))
-                    <h4>Type: </h4>
+                    Type: 
                     {{$tissueType->tissue_type->name}}
                     @endif
 
