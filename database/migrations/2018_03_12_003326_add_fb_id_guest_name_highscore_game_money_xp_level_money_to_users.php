@@ -16,11 +16,11 @@ class AddFbIdGuestNameHighscoreGameMoneyXpLevelMoneyToUsers extends Migration
         Schema::table('users', function($table) {
             $table->string('fbId')->nullable();
             $table->string('guestName')->nullable();
-            $table->integer('highscore')->defaults(0);
-            $table->integer('game_money')->defaults(0);
-            $table->integer('xp')->defaults(0);
-            $table->integer('level')->defaults(0);
-            $table->integer('money')->defaults(0);
+            $table->integer('highscore')->default(0);
+            $table->integer('game_money')->default(0);
+            $table->integer('xp')->default(0);
+            $table->integer('level')->default(0);
+            $table->integer('money')->default(0);
         });
     }
 
