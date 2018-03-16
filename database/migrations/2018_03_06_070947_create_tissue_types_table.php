@@ -18,6 +18,7 @@ class CreateTissueTypesTable extends Migration
             $table->string('name');
             $table->integer('tissue_type_id')->unsigned()->nullable();
             $table->text('description');
+            $table->jsonb('cache')->nullable();
             $table->timestamps();
         });
     }

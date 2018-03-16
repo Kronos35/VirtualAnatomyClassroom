@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col col-md-10">
-                            Tissue Type's List
+                            Muscles' List
                         </div>
                         <div class="col">
                             <a class="btn btn-primary" href="{{ URL::to($controllerUrl) }}/create">Create</a>
@@ -17,11 +17,11 @@
                 </div>
                 <div class="card-body">
 
-                    @foreach ($tissueTypes as $tissueType)
+                    @foreach ($muscles as $muscle)
                         <div class="row">
-                            <div class="col col-md-10">{{$tissueType->name}}</div>
+                            <div class="col col-md-10">{{$muscle->name}}</div>
                             <div class="col col-md-2">
-                                <a href="{{$controllerUrl}}/{{$tissueType->id}}/edit">Edit</a>/<a href="{{$controllerUrl}}/{{$tissueType->id}}">View</a>
+                                <a href="{{$controllerUrl}}/{{$muscle->id}}/edit">Edit</a>/<a href="{{$controllerUrl}}/{{$muscle->id}}">View</a>
                             </div>
                         </div>
                     @endforeach

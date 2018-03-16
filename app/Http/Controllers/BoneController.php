@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tissue;
+use App\TissueType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -19,7 +20,8 @@ class BoneController extends Controller
     {
         //
         if (Auth::user()) {
-            $bones=Tissue::where('tissue_type_id',1)->get();
+            $tissue_type_id = TissueType::where('name','Bones')->pluck('id');
+            $bones=Tissue::where('tissue_type_id',$tissue_type_id)->get();
             return View::make('bones.list')
             ->with('controllerUrl',$this->controllerUrl)
             ->with('bones',$bones);

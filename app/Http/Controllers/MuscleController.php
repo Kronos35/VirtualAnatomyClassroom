@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Tissue;
+use App\TissueType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
@@ -19,7 +21,18 @@ class MuscleController extends Controller
     {
         //
         if (Auth::user()) {
-            $muscles=Tissue::where('tissue_type_id',1)->get();
+            $tissues =Tissue::get();
+            $muscles = new Collection;
+            foreach ($tissues as $tissue) {
+                $tissueType = $tissue->tissue_type;
+                while ($tissueType->tissue_type) {
+                    $tissueType=$tissueType->tissue_type;
+                    if ($tissueType->name == 'Muscles') {
+                        $muscles->push($tissue);
+                    }
+                }
+            }
+
             return View::make('muscles.list')
             ->with('controllerUrl',$this->controllerUrl)
             ->with('muscles',$muscles);
