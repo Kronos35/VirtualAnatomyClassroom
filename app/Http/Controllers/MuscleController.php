@@ -24,11 +24,13 @@ class MuscleController extends Controller
             $tissues =Tissue::get();
             $muscles = new Collection;
             foreach ($tissues as $tissue) {
-                $tissueType = $tissue->tissue_type;
-                while ($tissueType->tissue_type) {
-                    $tissueType=$tissueType->tissue_type;
-                    if ($tissueType->name == 'Muscles') {
-                        $muscles->push($tissue);
+                if ($tissue->tissue_type) {
+                    $tissueType = $tissue->tissue_type;
+                    while ($tissueType->tissue_type) {
+                        $tissueType=$tissueType->tissue_type;
+                        if ($tissueType->name == 'Muscles') {
+                            $muscles->push($tissue);
+                        }
                     }
                 }
             }

@@ -19,9 +19,15 @@
 
                     @foreach ($bones as $bone)
                         <div class="row">
-                            <div class="col col-md-10">{{$bone->name}}</div>
+                            <div class="col col-md-10">
+                                @if(isset($bone->name))
+                                {{$bone->name}}
+                                @endif
+                            </div>
                             <div class="col col-md-2">
+                                @if(isset($bone->id))
                                 <a href="{{$controllerUrl}}/{{$bone->id}}/edit">Edit</a>/<a href="{{$controllerUrl}}/{{$bone->id}}">View</a>
+                                @endif
                             </div>
                         </div>
                     @endforeach
