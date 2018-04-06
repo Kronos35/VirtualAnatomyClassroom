@@ -1,17 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Tissue;
 use App\TissueType;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\View;
+use App\Http\Controllers\Controller;
 
-class MuscleController extends Controller
+class BoneController extends Controller
 {
-    private $controllerUrl = '/muscles';
     /**
      * Display a listing of the resource.
      *
@@ -20,25 +17,9 @@ class MuscleController extends Controller
     public function index()
     {
         //
-        if (Auth::user()) {
-            $tissues =Tissue::get();
-            $muscles = new Collection;
-            foreach ($tissues as $tissue) {
-                $tissueType = $tissue->tissue_type;
-                while ($tissueType->tissue_type) {
-                    $tissueType=$tissueType->tissue_type;
-                    if ($tissueType->name == 'Muscles') {
-                        $muscles->push($tissue);
-                    }
-                    $tissueType->tissue_type;
-                }
-            }
-
-            return View::make('muscles.list')
-            ->with('controllerUrl',$this->controllerUrl)
-            ->with('muscles',$muscles);
-        }
-        return redirect('/login');
+        $tissue_type_id = TissueType::where('name','Bones')->pluck('id');
+        $bones=Tissue::where('tissue_type_id',$tissue_type_id)->get();
+        return $bones;
     }
 
     /**

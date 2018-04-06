@@ -20,3 +20,8 @@ Route::middleware('auth:api')->post('/update', 'Api\ApiController@update');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user()->toJson();
 });
+
+Route::get('muscles','Api\MuscleController@index');
+Route::get('bones','Api\BoneController@index');
+Route::resource('tissues','Api\TissueController')->only('index','show');
+Route::resource('tissue-types','Api\TissueTypeController')->only('index','show');
