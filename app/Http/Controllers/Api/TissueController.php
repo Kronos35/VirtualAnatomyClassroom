@@ -17,7 +17,7 @@ class TissueController extends Controller
     {
         //
         $tissues=Tissue::all();
-        return $tissues;
+        return $tissues->toJson(JSON_PRETTY_PRINT);
     }
 
     /**
@@ -50,7 +50,7 @@ class TissueController extends Controller
     public function show(Tissue $tissue)
     {
         //
-        return $tissue;
+        return $tissue->toJson(JSON_PRETTY_PRINT);
     }
 
     /**

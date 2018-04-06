@@ -105,21 +105,22 @@ class TissueTypeController extends Controller
     {
         //
         $user=Auth::user();
-        if ($id) {
-            $tissue_type=TissueType::find($id);
-        } else {
-            $tissue_type=new TissueType;
+        if ($user) {
+            if ($id) {
+                $tissue_type=TissueType::find($id);
+            } else {
+                $tissue_type=new TissueType;
+            }
+    
+            $this->validate($request, [
+                'name'=>'required|max:191',
+                'description'=>'required',
+            ]);
+            $tissue_type->name=$request->name;
+            $tissue_type->tissue_type_id=$request->tissue_type_id;
+            $tissue_type->description=$request->description;
+            $tissue_type->save();
         }
-
-        $this->validate($request, [
-            'name'=>'required|max:191',
-            'description'=>'required',
-        ]);
-        $tissue_type->name=$request->name;
-        $tissue_type->tissue_type_id=$request->tissue_type_id;
-        $tissue_type->description=$request->description;
-        $tissue_type->save();
-
         //redirect
         return redirect($this->controllerUrl);
     }
@@ -133,5 +134,10 @@ class TissueTypeController extends Controller
     public function destroy(TissueType $tissueType)
     {
         //
+        $user = Auth::user();
+        if ($user) {
+            $tissueType->delete();   
+        }
+        return redirect($this->controllerUrl);
     }
 }

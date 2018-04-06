@@ -136,6 +136,10 @@ class TissueController extends Controller
     public function destroy(Tissue $tissue)
     {
         //
-        $tissue->delete();
+        $user = Auth::user();
+        if ($user) {
+            $tissue->delete();   
+        }
+        return redirect($this->controllerUrl);
     }
 }
