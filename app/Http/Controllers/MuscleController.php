@@ -35,8 +35,8 @@ class MuscleController extends Controller
             }
 
             return View::make('muscles.list')
-            ->with('controllerUrl',$this->controllerUrl)
-            ->with('muscles',$muscles);
+                ->with('controllerUrl',$this->controllerUrl)
+                ->with('muscles',$muscles);
         }
         return redirect('/login');
     }
@@ -46,9 +46,10 @@ class MuscleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        return redirect('/tissues/create');
     }
 
     /**
@@ -71,6 +72,7 @@ class MuscleController extends Controller
     public function show($id)
     {
         //
+        return redirect('/tissues/'.$id);
     }
 
     /**
@@ -79,9 +81,10 @@ class MuscleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         //
+        return redirect('/tissues/'.$id.'/edit');
     }
 
     /**

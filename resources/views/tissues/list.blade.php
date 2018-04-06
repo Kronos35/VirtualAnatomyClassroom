@@ -1,33 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.lists')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col col-md-10">
-                            Tissue's list
-                        </div>
-                        <div class="col">
-                            <a class="btn btn-primary" href="{{ URL::to($controllerUrl) }}/create">Create</a>
-                        </div>
-                    </div>
-                </div>
+@section('card-header')
+Tissue's list
+@endsection
 
-                <div class="card-body">
-
-                    @foreach ($tissues as $tissue)
-                        <div class="row">
-                            <div class="col col-md-10">{{$tissue->name}}</div>
-                            <div class="col col-md-2"><a href="{{$controllerUrl}}/{{$tissue->id}}/edit">Edit</a>/<a href="{{$controllerUrl}}/{{$tissue->id}}">View</a></div>
-                        </div>
-                    @endforeach
-
-                </div>
+@section('body')
+    @foreach ($tissues as $tissue)
+        <div class="row">
+            <div class="col col-md-10">{{$tissue->name}}</div>
+            <div class="col col-md-2">
+                <a href="{{$controllerUrl}}/{{$tissue->id}}/edit">Edit</a>/<a href="{{$controllerUrl}}/{{$tissue->id}}">View</a>
             </div>
         </div>
-    </div>
-</div>
+    @endforeach
 @endsection
