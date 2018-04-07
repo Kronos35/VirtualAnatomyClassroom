@@ -86,9 +86,9 @@ class TissueController extends Controller
                 $tissueTypes[$tt['id']]=$tt['name'];
             }
             return View::make('tissues.create')
-            ->with('tissueTypes',$tissueTypes)
-            ->with('record',$tissue)
-            ->with('controllerUrl',$this->controllerUrl);
+                ->with('tissueTypes',$tissueTypes)
+                ->with('record',$tissue)
+                ->with('controllerUrl',$this->controllerUrl);
             $user=Auth::user();
         }
         return redirect('/login');
@@ -124,7 +124,7 @@ class TissueController extends Controller
         $tissue->save();
 
         //redirect
-        return redirect($this->controllerUrl);
+        return redirect()->action('TissueController@index');
     }
 
     /**

@@ -38,7 +38,7 @@ class TissueTypeController extends Controller
     public function create(Request $request)
     {
         //
-        return $this->edit($request,null);
+        return $this->edit($request, null);
     }
 
     /**
@@ -122,7 +122,7 @@ class TissueTypeController extends Controller
             $tissue_type->save();
         }
         //redirect
-        return redirect($this->controllerUrl);
+        return redirect()->action('TissueController@index');
     }
 
     /**
