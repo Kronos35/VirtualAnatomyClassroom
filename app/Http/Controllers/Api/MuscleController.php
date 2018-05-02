@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Tissue;
 use App\TissueType;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\View;
+use Illuminate\Support\Collection;
+use App\Http\Controllers\Controller;
 
-class BoneController extends Controller
+class MuscleController extends Controller
 {
-    private $controllerUrl = '/bones';
     /**
      * Display a listing of the resource.
      *
@@ -18,22 +17,21 @@ class BoneController extends Controller
      */
     public function index()
     {
-        //Get Lists
-        if (Auth::user()) {
-            $tissue_type_id = TissueType::where('name','Bones')->pluck('id');
-            if ($tissue_type_id->count()>0) {
-                $bones=Tissue::where('tissue_type_id',$tissue_type_id)->get();
-                return View::make('bones.list')
-                    ->with('controllerUrl',$this->controllerUrl)
-                    ->with('bones',$bones);
-            } else {
-                $bones=New Tissue;
-                return View::make('bones.list')
-                    ->with('controllerUrl',$this->controllerUrl)
-                    ->with('bones',$bones);
+        //
+        $tissues =Tissue::get();
+        $muscles = new Collection;
+        foreach ($tissues as $tissue) {
+            $tissueType = $tissue->tissue_type;
+            while ($tissueType->tissue_type) {
+                $tissueType=$tissueType->tissue_type;
+                if ($tissueType->name == 'Muscles') {
+                    $muscles->push($tissue);
+                }
+                $tissueType->tissue_type;
             }
         }
-        return redirect('/login');
+
+        return $muscles;
     }
 
     /**
@@ -44,7 +42,6 @@ class BoneController extends Controller
     public function create()
     {
         //
-        return redirect('/tissues/create');
     }
 
     /**
@@ -67,7 +64,6 @@ class BoneController extends Controller
     public function show($id)
     {
         //
-        return redirect('/tissues/'.$id.'/show');
     }
 
     /**
@@ -79,7 +75,6 @@ class BoneController extends Controller
     public function edit($id)
     {
         //
-        return redirect('/tissues/'.$id.'/edit');
     }
 
     /**

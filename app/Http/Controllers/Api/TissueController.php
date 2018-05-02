@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Tissue;
-use App\TissueType;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\View;
+use App\Http\Controllers\Controller;
 
-class BoneController extends Controller
+class TissueController extends Controller
 {
-    private $controllerUrl = '/bones';
     /**
      * Display a listing of the resource.
      *
@@ -18,22 +15,9 @@ class BoneController extends Controller
      */
     public function index()
     {
-        //Get Lists
-        if (Auth::user()) {
-            $tissue_type_id = TissueType::where('name','Bones')->pluck('id');
-            if ($tissue_type_id->count()>0) {
-                $bones=Tissue::where('tissue_type_id',$tissue_type_id)->get();
-                return View::make('bones.list')
-                    ->with('controllerUrl',$this->controllerUrl)
-                    ->with('bones',$bones);
-            } else {
-                $bones=New Tissue;
-                return View::make('bones.list')
-                    ->with('controllerUrl',$this->controllerUrl)
-                    ->with('bones',$bones);
-            }
-        }
-        return redirect('/login');
+        //
+        $tissues=Tissue::all();
+        return $tissues->toJson(JSON_PRETTY_PRINT);
     }
 
     /**
@@ -44,7 +28,6 @@ class BoneController extends Controller
     public function create()
     {
         //
-        return redirect('/tissues/create');
     }
 
     /**
@@ -64,10 +47,10 @@ class BoneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tissue $tissue)
     {
         //
-        return redirect('/tissues/'.$id.'/show');
+        return $tissue->toJson(JSON_PRETTY_PRINT);
     }
 
     /**
@@ -79,7 +62,6 @@ class BoneController extends Controller
     public function edit($id)
     {
         //
-        return redirect('/tissues/'.$id.'/edit');
     }
 
     /**
