@@ -23,7 +23,6 @@ class BoneController extends Controller
             $tissue_type_id = TissueType::where('name','Bones')->pluck('id');
             if ($tissue_type_id->count() > 0) {
                 $bones=Tissue::where('tissue_type_id',$tissue_type_id)->get();
-                dd($bones);
                 return View::make('bones.list')
                     ->with('controllerUrl',$this->controllerUrl)
                     ->with('bones',$bones);

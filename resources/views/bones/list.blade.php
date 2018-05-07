@@ -6,14 +6,21 @@ Bones' List
 @section('body')
     @if(isset($bones))
     @foreach ($bones as $bone)
-        <div class="row">
-            <div class="col col-md-10">{{$bone->name}}</div>
-            <div class="col col-md-2">
-                <a href="{{$controllerUrl}}/{{$bone->id}}/edit">Edit</a>
-                /
-                <a href="{{$controllerUrl}}/{{$bone->id}}">View</a>
-            </div>
-        </div>
+        <tr>
+            <td>{{$bone->name}}</td>
+            <td></td>
+            <td>
+            <a href="{{$controllerUrl}}/{{$bone->id}}/edit">Edit</a>
+            /
+            <a href="{{$controllerUrl}}/{{$bone->id}}">View</a>
+            /
+            <a onclick="document.getElementById('delete{{$bone->id}}').submit();">Delete</a>
+            <form id="delete{{$bone->id}}" action="{{ $controllerUrl }}/{{$bone->id}}" method="POST">
+                {{ method_field('DELETE') }}
+                {{ csrf_field() }}
+            </form>
+            </td>
+        </tr>
     @endforeach
     @endif
 @endsection
