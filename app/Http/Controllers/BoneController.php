@@ -21,16 +21,15 @@ class BoneController extends Controller
         //Get Lists
         if (Auth::user()) {
             $tissue_type_id = TissueType::where('name','Bones')->pluck('id');
-            if ($tissue_type_id->count()>0) {
+            if ($tissue_type_id->count() > 0) {
                 $bones=Tissue::where('tissue_type_id',$tissue_type_id)->get();
+                dd($bones);
                 return View::make('bones.list')
                     ->with('controllerUrl',$this->controllerUrl)
                     ->with('bones',$bones);
             } else {
-                $bones=New Tissue;
                 return View::make('bones.list')
-                    ->with('controllerUrl',$this->controllerUrl)
-                    ->with('bones',$bones);
+                    ->with('controllerUrl',$this->controllerUrl);
             }
         }
         return redirect('/login');
@@ -67,7 +66,7 @@ class BoneController extends Controller
     public function show($id)
     {
         //
-        return redirect('/tissues/'.$id.'/show');
+        return redirect('/tissues/'.$id);
     }
 
     /**
