@@ -1,0 +1,111 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 22/06/2016 15:20
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+/*margin-left: 20px;*/
+}
+
+.flaticon-anatomic-heart:before { content: "\f100"; }
+.flaticon-anatomic-spine:before { content: "\f101"; }
+.flaticon-bacteria-circle:before { content: "\f102"; }
+.flaticon-biceps:before { content: "\f103"; }
+.flaticon-big-ear:before { content: "\f104"; }
+.flaticon-big-eye:before { content: "\f105"; }
+.flaticon-big-finger:before { content: "\f106"; }
+.flaticon-big-intestines:before { content: "\f107"; }
+.flaticon-big-moustache:before { content: "\f108"; }
+.flaticon-big-nose:before { content: "\f109"; }
+.flaticon-big-nose-1:before { content: "\f10a"; }
+.flaticon-big-skull:before { content: "\f10b"; }
+.flaticon-big-tooth:before { content: "\f10c"; }
+.flaticon-bone-hand:before { content: "\f10d"; }
+.flaticon-bones-crossed:before { content: "\f10e"; }
+.flaticon-brain-cenit-view:before { content: "\f10f"; }
+.flaticon-brain-on-head:before { content: "\f110"; }
+.flaticon-child-head:before { content: "\f111"; }
+.flaticon-classic-moustache:before { content: "\f112"; }
+.flaticon-conceiving:before { content: "\f113"; }
+.flaticon-dna-code:before { content: "\f114"; }
+.flaticon-eye-closed:before { content: "\f115"; }
+.flaticon-female-reproduction-system:before { content: "\f116"; }
+.flaticon-femenine-torso:before { content: "\f117"; }
+.flaticon-full-stomach:before { content: "\f118"; }
+.flaticon-groin:before { content: "\f119"; }
+.flaticon-hand-cut:before { content: "\f11a"; }
+.flaticon-heart-beating:before { content: "\f11b"; }
+.flaticon-hip-bone:before { content: "\f11c"; }
+.flaticon-hip-radiography:before { content: "\f11d"; }
+.flaticon-human-back:before { content: "\f11e"; }
+.flaticon-human-eyes:before { content: "\f11f"; }
+.flaticon-human-head:before { content: "\f120"; }
+.flaticon-human-liver:before { content: "\f121"; }
+.flaticon-human-neck:before { content: "\f122"; }
+.flaticon-human-ribs:before { content: "\f123"; }
+.flaticon-human-sperm:before { content: "\f124"; }
+.flaticon-kidneys:before { content: "\f125"; }
+.flaticon-knee-bones:before { content: "\f126"; }
+.flaticon-knee-bones-1:before { content: "\f127"; }
+.flaticon-left-foot:before { content: "\f128"; }
+.flaticon-lips-with-mole:before { content: "\f129"; }
+.flaticon-lungs-with-bronchi:before { content: "\f12a"; }
+.flaticon-man-with-beard:before { content: "\f12b"; }
+.flaticon-masculine-foot:before { content: "\f12c"; }
+.flaticon-men-back:before { content: "\f12d"; }
+.flaticon-men-hair:before { content: "\f12e"; }
+.flaticon-men-legs:before { content: "\f12f"; }
+.flaticon-men-torso:before { content: "\f130"; }
+.flaticon-mustache-and-nose:before { content: "\f131"; }
+.flaticon-nose-and-lips:before { content: "\f132"; }
+.flaticon-oftalmology:before { content: "\f133"; }
+.flaticon-one-hair:before { content: "\f134"; }
+.flaticon-one-kidney:before { content: "\f135"; }
+.flaticon-open-mouth:before { content: "\f136"; }
+.flaticon-ophthalmology:before { content: "\f137"; }
+.flaticon-orthopedic-leg:before { content: "\f138"; }
+.flaticon-pregnant-woman:before { content: "\f139"; }
+.flaticon-skin-hair:before { content: "\f13a"; }
+.flaticon-spinal-bones:before { content: "\f13b"; }
+.flaticon-stomach:before { content: "\f13c"; }
+.flaticon-teeth-line:before { content: "\f13d"; }
+.flaticon-tongue-out:before { content: "\f13e"; }
+.flaticon-toothache:before { content: "\f13f"; }
+.flaticon-two-feet:before { content: "\f140"; }
+.flaticon-two-fingers:before { content: "\f141"; }
+.flaticon-two-kidneys:before { content: "\f142"; }
+.flaticon-two-lungs:before { content: "\f143"; }
+.flaticon-urinary-bladder:before { content: "\f144"; }
+.flaticon-urinary-system:before { content: "\f145"; }
+.flaticon-vended-knee:before { content: "\f146"; }
+.flaticon-walking-tiptoed:before { content: "\f147"; }
+.flaticon-woman-body:before { content: "\f148"; }
+.flaticon-woman-breast:before { content: "\f149"; }
+.flaticon-woman-lips:before { content: "\f14a"; }
+.flaticon-woman-neck:before { content: "\f14b"; }
+.flaticon-woman-with-panties:before { content: "\f14c"; }
+.flaticon-women-buttock:before { content: "\f14d"; }
+.flaticon-women-foot:before { content: "\f14e"; }
+.flaticon-x-ray-of-lungs:before { content: "\f14f"; }

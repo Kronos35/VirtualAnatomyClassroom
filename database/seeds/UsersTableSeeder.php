@@ -18,6 +18,5 @@ class UsersTableSeeder extends Seeder
             'email' => 'potato@potato.com',
             'password' => bcrypt('123456'),
         ]);
-
     }
 }

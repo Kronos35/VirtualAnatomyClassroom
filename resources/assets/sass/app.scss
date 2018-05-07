@@ -12,3 +12,11 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+// Import adminLTE's css
+@import '~admin-lte/dist/css/adminlte.css';
+@import '~admin-lte/dist/css/adminlte.min.css';
+@import '~admin-lte/plugins/datatables/dataTables.bootstrap4.css';
+
+
+// Import adminLTE's js
