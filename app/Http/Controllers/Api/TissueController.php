@@ -86,4 +86,19 @@ class TissueController extends Controller
     {
         //
     }
+
+    /**
+     * Get resource from storage based on name.
+     *
+     * @param  string $name
+     * @return \Illuminate\Http\Response
+     */
+    public function findByName($name)
+    {
+        $tissue = Tissue::where('name', 'like', '%' . $name . '%')->first();
+        if($tissue)
+            return $tissue->toJson(JSON_PRETTY_PRINT);
+        else
+            return null;
+    }
 }
