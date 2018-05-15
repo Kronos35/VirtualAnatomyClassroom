@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 
 class TissueController extends Controller
 {
+    private $controllerTitle = 'Tissues\'';
     private $controllerUrl = '/tissues';
     /**
      * Display a listing of the resource.
@@ -25,6 +26,7 @@ class TissueController extends Controller
         if($user){
             $tissues=Tissue::all();
             return View::make('tissues.list')
+            ->with('controllerTitle', $this->controllerTitle)
             ->with('controllerUrl',$this->controllerUrl)
             ->with('tissues',$tissues);
         }

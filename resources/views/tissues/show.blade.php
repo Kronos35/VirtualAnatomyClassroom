@@ -1,34 +1,24 @@
-@extends('layouts.master')
+@extends('layouts.shows')
 
-@section('content')
+@section('card-header')
+    {{$tissue->name}}
+@endsection
+
+@section('edit-button')
+<a class="btn btn-primary" href="{{ URL::to($controllerUrl) }}/{{$tissue->id}}/edit">Edit</a>
+@endsection
+
+@section('body')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col col-md-10">
-                            {{$tissue->name}}
-                        </div> 
-                        <div class="col">
-                            <a class="btn btn-primary" href="{{ URL::to($controllerUrl) }}/{{$tissue->id}}/edit">Edit</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h4> Content: </h4>
-                    {{$tissue->content}}
-                    <br>
-                    <br>
-                    <h4>Description: </h4>
-                    {{$tissue->description}}
-                    <br>
-                    <br>
-                    <h4>Type: </h4>
-                    {{$tissue->tissue_type->name}}
-                </div>
-            </div>
-        </div>
-    </div>
+    <h4> Content: </h4>
+    {{$tissue->content}}
+    <br>
+    <br>
+    <h4>Description: </h4>
+    {{$tissue->description}}
+    <br>
+    <br>
+    <h4>Type: </h4>
+    <a href="/tissue_types/{{$tissue->tissue_type->id}}">{{$tissue->tissue_type->name}}</a>
 </div>
 @endsection

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\View;
 
 class MuscleController extends Controller
 {
+    private $controllerTitle = 'Muscles\'';
     private $controllerUrl = '/muscles';
     /**
      * Display a listing of the resource.
@@ -36,9 +37,10 @@ class MuscleController extends Controller
                 }
             }
 
-            return View::make('muscles.list')
+            return View::make('tissues.list')
+                ->with('controllerTitle',$this->controllerTitle)
                 ->with('controllerUrl',$this->controllerUrl)
-                ->with('muscles',$muscles);
+                ->with('tissues',$muscles);
         }
         return redirect('/login');
     }

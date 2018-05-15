@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\View;
 
 class BoneController extends Controller
 {
+    private $controllerTitle = 'Bones\'';
     private $controllerUrl = '/bones';
     /**
      * Display a listing of the resource.
@@ -21,15 +22,11 @@ class BoneController extends Controller
         //Get Lists
         if (Auth::user()) {
             $tissue_type_id = TissueType::where('name','Bones')->pluck('id');
-            if ($tissue_type_id->count() > 0) {
-                $bones=Tissue::where('tissue_type_id',$tissue_type_id)->get();
-                return View::make('bones.list')
-                    ->with('controllerUrl',$this->controllerUrl)
-                    ->with('bones',$bones);
-            } else {
-                return View::make('bones.list')
-                    ->with('controllerUrl',$this->controllerUrl);
-            }
+            $bones=Tissue::where('tissue_type_id',$tissue_type_id)->get();
+            return View::make('tissues.list')
+                ->with('controllerTitle',$this->controllerTitle)
+                ->with('controllerUrl',$this->controllerUrl)
+                ->with('tissues',$bones);
         }
         return redirect('/login');
     }

@@ -1,14 +1,14 @@
 @extends('layouts.lists')
 
 @section('card-header')
-    Tissue's list
+    {{$controllerTitle}} list
 @endsection
 
 @section('body')
     @foreach ($tissues as $tissue)
         <tr>
             <td>{{$tissue->name}}</td>
-            <td></td>
+            <td>{{Str_limit($tissue->description, $limit = 80, $end = '...') }} </td>
             <td>
             <a href="{{$controllerUrl}}/{{$tissue->id}}/edit">Edit</a>
             /

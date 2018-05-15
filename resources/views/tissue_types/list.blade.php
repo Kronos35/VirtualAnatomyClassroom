@@ -7,7 +7,7 @@ Tissue Type's List
     @foreach ($tissueTypes as $tissueType)
         <tr>
           <td>{{$tissueType->name}}</td>
-          <td></td>
+          <td>{{Str_limit($tissueType->description, $limit = 80, $end = '...') }} </td>
           <td>
             <a href="{{$controllerUrl}}/{{$tissueType->id}}/edit">Edit</a>
             /
