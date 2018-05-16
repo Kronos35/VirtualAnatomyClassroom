@@ -28,7 +28,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">{{config('app.name')}}</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{{asset('img/logo.png')}}" style="height: 30px">{{config('app.name')}}</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -78,7 +78,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
-                    <h1 class="brand-heading">{{ config('app.name') }}</h1>
+                    <h1 class="brand-heading"><img src="{{asset('img/logo.png')}}" style="height: 200px">{{ config('app.name') }}</h1>
                     <p class="intro-text">
                     Anatomy made simple.
                     <br>
@@ -108,7 +108,7 @@
             </p>
             <ul class="list-inline banner-social-buttons">
               <li class="list-inline-item">
-                <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg">
+                <a href="https://unity3d.com" class="btn btn-default btn-lg">
                   <img src="{{asset('images/logo/unity-logo-png/White/unity-master-white.png')}}" style="height: 50px;">
                   <span class="network-name"></span>
                 </a>

@@ -101,7 +101,10 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-      <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
+      <div class="nav-link">
+        <img src="{{asset('img/logo.png')}}" style="height: 30px">    
+        <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
+      </div>
     </a>
     @if(Auth::user())
     <!-- Sidebar -->

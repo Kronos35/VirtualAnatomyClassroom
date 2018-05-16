@@ -1,4 +1,4 @@
-@extends('layouts.shows')
+@extends('layouts.show-layout')
 
 @section('card-header')
     {{$tissue->name}}
