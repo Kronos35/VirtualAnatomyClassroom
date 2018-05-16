@@ -100,8 +100,7 @@
           <div class="col-lg-8 mx-auto">
             <h2>About {{ config('app.name') }}</h2>
             <p>
-              {{ config('app.name') }} is a virtual reality aplication designed to provide students, teachers and colleges with a tool
-              to learn anatomy in a controlled virtual envoriment.
+              {{ config('app.name') }} is a virtual reality application designed to provide students, teachers and colleges with a tool to learn anatomy in a controlled virtual enviroment.
             </p>
             <p>
               {{ config('app.name') }} is powered by:
