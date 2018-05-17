@@ -164,6 +164,11 @@ class BonesSeeder extends Seeder
             ],
 
             [
+                'name' => 'Radio',
+                'slug' => 'Radio'
+            ],
+
+            [
                 'name' => 'Húmero',
                 'slug' => 'H_mero'
             ]
