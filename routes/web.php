@@ -22,3 +22,4 @@ Route::resource('tissues', 'TissueController');
 Route::resource('tissue_types', 'TissueTypeController');
 Route::resource('muscles', 'MuscleController');
 Route::resource('bones', 'BoneController');
+Route::resource('zones', 'ZoneController');

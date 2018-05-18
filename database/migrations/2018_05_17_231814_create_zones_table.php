@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTissuesTable extends Migration
+class CreateZonesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateTissuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tissues', function (Blueprint $table) {
+        Schema::create('zones', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('slug')->unique();
-            $table->integer('zone_id');
-            $table->integer('tissue_type_id')->unsigned()->nullable();
             $table->text('content');
             $table->text('description');
             $table->timestamps();
@@ -32,6 +30,6 @@ class CreateTissuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tissues');
+        Schema::dropIfExists('zones');
     }
 }
