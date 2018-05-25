@@ -122,7 +122,7 @@ class TissueTypeController extends Controller
             $tissue_type->save();
         }
         //redirect
-        return redirect()->action('TissueTypeController@index');
+        return redirect()->action('TissueTypeController@index')->with('status', 'Success!');
     }
 
     /**
