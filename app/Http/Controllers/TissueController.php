@@ -109,8 +109,16 @@ class TissueController extends Controller
         $user=Auth::user();
         if ($id) {
             $tissue=Tissue::find($id);
+            $slug = $tissue->slug;
         } else {
             $tissue=new Tissue;
+            //Slug construction            
+            $slugFlag = Tissue::where('slug', $slug)->get();
+            if ($slugFlag->count() > 0) {
+                $slug = str_replace(' ', '_', $request->name).'_'.($slugFlag->count()+1);
+            } else {
+                $slug = str_replace(' ', '_', $request->name);
+            }
         }
 
         $this->validate($request, [
@@ -119,14 +127,16 @@ class TissueController extends Controller
             'content'=>'required',
             'description'=>'required',
         ]);
-        $tissue->name=$request->name;
-        $tissue->tissue_type_id=$request->tissue_type_id;
-        $tissue->content=$request->content;
-        $tissue->description=$request->description;
+
+        $tissue->name = $request->name;
+        $tissue->tissue_type_id = $request->tissue_type_id;
+        $tissue->content = $request->content;
+        $tissue->description = $request->description;
+        $tissue->slug = $slug;
         $tissue->save();
 
         //redirect
-        return redirect()->action('TissueController@index');
+        return redirect()->action('TissueController@index')->with('status', 'Success!');
     }
 
     /**
