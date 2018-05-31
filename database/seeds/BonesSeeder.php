@@ -18,191 +18,196 @@ class BonesSeeder extends Seeder
         //
 
         $tissue_type = (TissueType::where('name','Bones')->first())->id;
+        $z_hombro_id = (Zone::where('slug','Hombro')->first())->id;
+        $z_brazo_id = (Zone::where('slug','Brazo')->first())->id;
+        $z_ant_brazo_id = (Zone::where('slug','Ante-brazo')->first())->id;
+        $z_mano_id = (Zone::where('slug','Mano')->first())->id;
+
         $bone_names = [
 
             [
                 'name' => 'Escápula',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_hombro_id,
                 'slug' => 'Esc_pula'
             ],
 
             [
                 'name' => 'Primer Metacarpiano',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '1er_Metacarpiano'
             ],
 
             [
                 'name' => 'Primera Falange Distal',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '1ra_Falange_Distal'
             ],
 
             [
                 'name' => 'Primera Falange Próximal',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '1ra_Falange_Proximal'
             ],
 
             [
                 'name' => 'Segunda Falange Distal',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '2da_Falange_Distal'
             ],
 
             [
                 'name' => 'Segunda Falange Medial',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '2da_Falange_Medial'
             ],
 
             [
                 'name' => 'Segunda Falange Proximal',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '2da_Falange_Proximal'
             ],
 
             [
                 'name' => 'Segundo Metacarpiano',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '2do_Metacarpiano'
             ],
 
             [
                 'name' => 'Tercer Metacarpiano',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '3er_Metacarpiano'
             ],
 
             [
                 'name' => 'Tercera Falange Distal',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '3ra_Falange_Distal'
             ],
 
             [
                 'name' => 'Tercera Falange Medial',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '3ra_Falange_Medial'
             ],
 
             [
                 'name' => 'Tercera Falange Proximal',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '3ra_Falange_Proximal'
             ],
 
             [
                 'name' => 'Cuarta Falange Distal',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '4ta_Falange_Distal'
             ],
 
             [
                 'name' => 'Cuarta Falange Medial',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '4ta_Falange_Medial'
             ],
 
             [
                 'name' => 'Cuarta Falange Proximal',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '4ta_Falange_Proximal'
             ],
 
             [
                 'name' => 'Cuarto Metacarpiano',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '4to_Metacarpiano'
             ],
 
             [
                 'name' => 'Quinta Falange Distal',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '5ta_Falange_Distal'
             ],
 
             [
                 'name' => 'Quinta Falange Medial',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '5ta_Falange_Medial'
             ],
 
             [
                 'name' => 'Quinta Falange Proximal',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '5ta_Falange_Proximal'
             ],
 
             [
                 'name' => 'Quinto Metacarpiano',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => '5to_Metacarpiano'
             ],
 
             [
                 'name' => 'Escafoides',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => 'Escafoides'
             ],
 
             [
                 'name' => 'Ganchoso',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => 'Ganchoso'
             ],
 
             [
                 'name' => 'Grande',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => 'Grande'
             ],
 
             [
                 'name' => 'Piramidal',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => 'Piramidal'
             ],
 
             [
                 'name' => 'Pisiforme',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => 'Pisiforme'
             ],
 
             [
                 'name' => 'Semilunar',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => 'Semilunar'
             ],
 
             [
                 'name' => 'Trapecio',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => 'Trapecio'
             ],
 
             [
                 'name' => 'Trapezoide',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_mano_id,
                 'slug' => 'Trapezoide'
             ],
 
             [
                 'name' => 'Cúbito',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_ant_brazo_id,
                 'slug' => 'C_bito'
             ],
 
             [
                 'name' => 'Radio',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_ant_brazo_id,
                 'slug' => 'Radio'
             ],
 
             [
                 'name' => 'Húmero',
-                'zone_id' => (Zone::where('name', 'Hombro')->first())->id,
+                'zone_id' => $z_brazo_id,
                 'slug' => 'H_mero'
             ]
         ];
