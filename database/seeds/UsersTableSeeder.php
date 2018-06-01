@@ -1,6 +1,7 @@
 <?php
 
 use App\User;
+use App\Account;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -15,6 +16,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        // Account
+        $account_id = (Account::where('name','UACJ')->first())->id;
         // Roles
         $admin = Role::create(['name' => 'admin']);
         $writer = Role::create(['name' => 'writer']);
@@ -46,6 +49,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Admin',
             'email' => 'potato@potato.com',
+            'account_id' => $account_id,
             'password' => bcrypt('123456'),
         ]);
 
@@ -53,6 +57,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'student',
             'email' => 'student@potato.com',
+            'account_id' => $account_id,
             'password' => bcrypt('123456'),
         ]);
 
@@ -60,6 +65,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Teacher',
             'email' => 'teacher@potato.com',
+            'account_id' => $account_id,
             'password' => bcrypt('123456'),
         ]);
 

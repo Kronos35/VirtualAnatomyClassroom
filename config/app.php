@@ -164,6 +164,7 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
 
+        JeroenNoten\LaravelAdminLte\ServiceProvider::class,
 
     ],
 
