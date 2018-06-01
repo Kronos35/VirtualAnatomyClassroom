@@ -21,9 +21,6 @@ class CreateUsersTable extends Migration
             $table->integer('account_id')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();
-
-            // Foreign keys
-            // $table->foreign('account_id')->references('id')->on('accounts');
         });
     }
 
