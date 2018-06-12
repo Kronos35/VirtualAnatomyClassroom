@@ -37,7 +37,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Anconeo',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
             
             [
@@ -46,7 +46,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Aponeurosis_bicipital',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
             
             [
@@ -55,7 +55,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Braquiorradial',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -64,7 +64,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Abductor_corto_del_pulgar',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -73,7 +73,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Abductor_del_me_ique',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -82,7 +82,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Abductor_largo_del_pulgar',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -91,7 +91,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Abductor_del_pulgar',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -100,7 +100,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Extensor_com_n_de_los_dedos',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -109,7 +109,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Extensor_corto_del_pulgar',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -118,7 +118,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Extensor_del__ndice',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -127,7 +127,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Extensor_del_me_ique',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -136,7 +136,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Extensor_largo_del_pulgar',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -145,7 +145,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Extensor_radial_corto_del_carpo',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -154,7 +154,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Extensor_radial_largo_del_carpo',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -163,7 +163,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Flexor_corto_del_me_ique',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -172,7 +172,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Flexor_cubital_del_carpo',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -181,7 +181,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Flexor_digitorum_profundus',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -190,7 +190,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Flexor_digitorum_superficialis',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -199,7 +199,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Flexor_pollicis_brevis',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -208,7 +208,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Flexor_pollicis_longus',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -217,7 +217,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Flexor_radial_del_carpo',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -226,7 +226,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Inter_seos_dorsales',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -235,7 +235,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Lumbricales',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -244,7 +244,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Opponens_digiti_minimi',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -253,7 +253,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Opponens_pollicis',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -262,7 +262,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Palmar_interossei',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -271,7 +271,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Palmaris_longus',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -280,7 +280,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Superficial_flexor_retinaculum',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
             
             [
@@ -289,7 +289,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Pronator_quadratus',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -298,7 +298,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Pronator_teres',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -307,7 +307,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Supinator',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -316,7 +316,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Biceps_braquial',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -325,7 +325,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Braquial',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -334,7 +334,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Coracobraquial',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
             
             [
@@ -343,7 +343,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Triceps_braquial',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -352,7 +352,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Deltoides',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -361,7 +361,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Infraespinoso',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -370,7 +370,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Redondo_mayor',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
             
             [
@@ -379,7 +379,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Redondo_menor',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -388,7 +388,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Subescapular',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ],
 
             [
@@ -397,7 +397,7 @@ class MusclesSeeder extends Seeder
                 'slug' => 'Supraespinoso',
                 'tissue_type_id' => $tissue_type,
                 'content' => $sampleText,
-                'description' => $sampleText,
+                'description' => $sampleDesc,
             ]
         ];
 
