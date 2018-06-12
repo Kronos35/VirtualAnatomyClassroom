@@ -81,7 +81,7 @@ class TissueController extends Controller
     {
         //
         $user=Auth::user();
-        dd($user->can('edit articles'));
+        // dd($user->can('edit articles'));
         if ($user) {
             $tissue_types=TissueType::get(['id','name']);
             $tissueTypes=[];
