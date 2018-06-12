@@ -28,6 +28,12 @@
         {!! $errors->first('tissue_type_id', '<p class="invalid-feedback">:message</p>') !!}
     </div>
     <br>
+    <div class="form-group {{ $errors->has('zone_id') ? 'has-danger' : '' }}">
+        {{Form::label('zone_id', 'Zones')}}:
+        {{Form::select('zone_id',$zones,null, array('class' => $errors->has('zone_id') ? 'form-control  is-invalid' : 'form-control'))}}
+        {!! $errors->first('zone_id', '<p class="invalid-feedback">:message</p>') !!}
+    </div>
+    <br>
     <div class="form-group {{ $errors->has('content') ? 'has-danger' : '' }}">
         {{Form::label('content', 'Content')}}:
         {{ Form::textarea('content', null, array('class' => $errors->has('content') ? 'form-control  is-invalid' : 'form-control')) }}

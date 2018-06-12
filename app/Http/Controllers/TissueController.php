@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tissue;
 use App\TissueType;
+use App\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -52,8 +53,8 @@ class TissueController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
         $this->update($request, null);
+        return redirect()->action('TissueController@index')->with('status', 'Success!');
     }
 
     /**
@@ -80,6 +81,7 @@ class TissueController extends Controller
     {
         //
         $user=Auth::user();
+        dd($user->can('edit articles'));
         if ($user) {
             $tissue_types=TissueType::get(['id','name']);
             $tissueTypes=[];
@@ -87,9 +89,16 @@ class TissueController extends Controller
             foreach ($tissue_types->toArray() as $tt) {
                 $tissueTypes[$tt['id']]=$tt['name'];
             }
+            $zone_list=Zone::get(['id','name']);
+            $zones=[];
+            $zones['']='Select';
+            foreach ($zone_list->toArray() as $z) {
+                $zones[$z['id']]=$z['name'];
+            }
             return View::make('tissues.create')
                 ->with('tissueTypes',$tissueTypes)
                 ->with('record',$tissue)
+                ->with('zones',$zones)
                 ->with('controllerUrl',$this->controllerUrl);
             $user=Auth::user();
         }
@@ -113,30 +122,33 @@ class TissueController extends Controller
         } else {
             $tissue=new Tissue;
             //Slug construction            
+            $slug = str_replace(' ', '_', $request->name);
             $slugFlag = Tissue::where('slug', $slug)->get();
             if ($slugFlag->count() > 0) {
                 $slug = str_replace(' ', '_', $request->name).'_'.($slugFlag->count()+1);
-            } else {
-                $slug = str_replace(' ', '_', $request->name);
             }
         }
 
         $this->validate($request, [
             'name'=>'required|max:191',
             'tissue_type_id'=>'required',
+            'zone_id'=>'required',
             'content'=>'required',
             'description'=>'required',
         ]);
 
         $tissue->name = $request->name;
         $tissue->tissue_type_id = $request->tissue_type_id;
+        $tissue->zone_id = $request->zone_id;
         $tissue->content = $request->content;
         $tissue->description = $request->description;
         $tissue->slug = $slug;
         $tissue->save();
 
         //redirect
-        return redirect()->action('TissueController@index')->with('status', 'Success!');
+        if ($id) {
+            return redirect()->action('TissueController@index')->with('status', 'Success!');
+        }
     }
 
     /**
