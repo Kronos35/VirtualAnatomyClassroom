@@ -113,7 +113,7 @@
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="https://github.com/BlackrockDigital/startbootstrap" class="btn btn-default btn-lg">
+                <a href="https://www.leapmotion.com/" class="btn btn-default btn-lg">
                   <img src="https://static1.squarespace.com/static/57bf65a78419c24a012e3072/t/57d328d6cd0f68a33d3535dd/1524669854681/?format=1500w" style="height: 50px;">
                 </a>
               </li>

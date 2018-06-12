@@ -27,264 +27,388 @@ class MusclesSeeder extends Seeder
         $z_ant_brazo_id = (Zone::where('slug','Ante-brazo')->first())->id;
         $z_mano_id = (Zone::where('slug','Mano')->first())->id;
 
+        $sampleText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+        $sampleDesc = 'Exercitation ullamcoLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+
         $muscle_names = [
             [
                 'name' => 'Anconeo',
                 'zone_id' => $z_ant_brazo_id,
-                'slug' => 'Anconeo'
+                'slug' => 'Anconeo',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
             
             [
                 'name' => 'Aponeurosis bicipital',
                 'zone_id' => $z_ant_brazo_id,
-                'slug' => 'Aponeurosis_bicipital'
+                'slug' => 'Aponeurosis_bicipital',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
             
             [
                 'name' => 'Braquiorradial',
                 'zone_id' => $z_ant_brazo_id,
-                'slug' => 'Braquiorradial'
+                'slug' => 'Braquiorradial',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Abductor corto del pulgar',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Abductor_corto_del_pulgar'
+                'slug' => 'Abductor_corto_del_pulgar',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Abductor del meñique',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Abductor_del_me_ique'
+                'slug' => 'Abductor_del_me_ique',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Abductor largo del pulgar',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Abductor_largo_del_pulgar'
+                'slug' => 'Abductor_largo_del_pulgar',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Abductor del pulgar',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Abductor_del_pulgar'
+                'slug' => 'Abductor_del_pulgar',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Extensor cumún de los dedos',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Extensor_com_n_de_los_dedos'
+                'slug' => 'Extensor_com_n_de_los_dedos',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Extensor corto del pulgar',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Extensor_corto_del_pulgar'
+                'slug' => 'Extensor_corto_del_pulgar',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Extensor del índice',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Extensor_del__ndice'
+                'slug' => 'Extensor_del__ndice',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Extensor del meñique',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Extensor_del_me_ique'
+                'slug' => 'Extensor_del_me_ique',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Extensor largo del pulgar',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Extensor_largo_del_pulgar'
+                'slug' => 'Extensor_largo_del_pulgar',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Extensor radial corto del carpo',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Extensor_radial_corto_del_carpo'
+                'slug' => 'Extensor_radial_corto_del_carpo',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Extensor radial largo del carpo',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Extensor_radial_largo_del_carpo'
+                'slug' => 'Extensor_radial_largo_del_carpo',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Flexor corto del meñique',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Flexor_corto_del_me_ique'
+                'slug' => 'Flexor_corto_del_me_ique',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Flexor cubital del carpo',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Flexor_cubital_del_carpo'
+                'slug' => 'Flexor_cubital_del_carpo',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Flexor digitorum profundus',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Flexor_digitorum_profundus'
+                'slug' => 'Flexor_digitorum_profundus',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Flexor digitorum superficialis',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Flexor_digitorum_superficialis'
+                'slug' => 'Flexor_digitorum_superficialis',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Flexor pollicis_brevis',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Flexor_pollicis_brevis'
+                'slug' => 'Flexor_pollicis_brevis',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Flexor pollicis longus',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Flexor_pollicis_longus'
+                'slug' => 'Flexor_pollicis_longus',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Flexor radial del carpo',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Flexor_radial_del_carpo'
+                'slug' => 'Flexor_radial_del_carpo',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Interoseos dorsales',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Inter_seos_dorsales'
+                'slug' => 'Inter_seos_dorsales',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Lumbricales',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Lumbricales'
+                'slug' => 'Lumbricales',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Opponens digiti minimi',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Opponens_digiti_minimi'
+                'slug' => 'Opponens_digiti_minimi',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Opponens pollicis',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Opponens_pollicis'
+                'slug' => 'Opponens_pollicis',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Palmar interossei',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Palmar_interossei'
+                'slug' => 'Palmar_interossei',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Palmaris longus',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Palmaris_longus'
+                'slug' => 'Palmaris_longus',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Superficial flexor retinaculum',
                 'zone_id' => $z_mano_id,
-                'slug' => 'Superficial_flexor_retinaculum'
+                'slug' => 'Superficial_flexor_retinaculum',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
             
             [
                 'name' => 'Pronator quadratus',
                 'zone_id' => $z_ant_brazo_id,
-                'slug' => 'Pronator_quadratus'
+                'slug' => 'Pronator_quadratus',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Pronator teres',
                 'zone_id' => $z_ant_brazo_id,
-                'slug' => 'Pronator_teres'
+                'slug' => 'Pronator_teres',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Supinator',
                 'zone_id' => $z_ant_brazo_id,
-                'slug' => 'Supinator'
+                'slug' => 'Supinator',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Biceps braquial',
                 'zone_id' => $z_brazo_id,
-                'slug' => 'Biceps_braquial'
+                'slug' => 'Biceps_braquial',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Braquial',
                 'zone_id' => $z_brazo_id,
-                'slug' => 'Braquial'
+                'slug' => 'Braquial',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Coracobraquial',
                 'zone_id' => $z_brazo_id,
-                'slug' => 'Coracobraquial'
+                'slug' => 'Coracobraquial',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
             
             [
                 'name' => 'Triceps braquial',
                 'zone_id' => $z_brazo_id,
-                'slug' => 'Triceps_braquial'
+                'slug' => 'Triceps_braquial',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Deltoides',
                 'zone_id' => $z_hombro_id,
-                'slug' => 'Deltoides'
+                'slug' => 'Deltoides',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Infraespinoso',
                 'zone_id' => $z_hombro_id,
-                'slug' => 'Infraespinoso'
+                'slug' => 'Infraespinoso',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Redondo mayor',
                 'zone_id' => $z_hombro_id,
-                'slug' => 'Redondo_mayor'
+                'slug' => 'Redondo_mayor',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
             
             [
                 'name' => 'Redondo menor',
                 'zone_id' => $z_hombro_id,
-                'slug' => 'Redondo_menor'
+                'slug' => 'Redondo_menor',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Subescapular',
                 'zone_id' => $z_hombro_id,
-                'slug' => 'Subescapular'
+                'slug' => 'Subescapular',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ],
 
             [
                 'name' => 'Supraespinoso',
                 'zone_id' => $z_hombro_id,
-                'slug' => 'Supraespinoso'
+                'slug' => 'Supraespinoso',
+                'tissue_type_id' => $tissue_type,
+                'content' => $sampleText,
+                'description' => $sampleText,
             ]
         ];
-
-        $sampleText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
 
         foreach ($muscle_names as $name) {
             $tissue = new Tissue;
             $tissue->name = $name['name'];
             $tissue->slug = $name['slug'];
             $tissue->zone_id = $name['zone_id'];
-            $tissue->tissue_type_id = $tissue_type;
-            $tissue->content = $sampleText;
-            $tissue->description = $sampleText;
+            $tissue->tissue_type_id = $name['tissue_type_id'];
+            $tissue->content = $name['content'];
+            $tissue->description = $name['description'];
             $tissue->save();
         }
              
