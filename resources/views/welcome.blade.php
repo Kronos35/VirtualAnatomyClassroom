@@ -10,9 +10,10 @@
 
     <title>{{ config('app.name') }}</title>
 
+    <!-- Icon -->
+    <link rel="icon" href="{{asset('img/logo.png')}}">
     <!-- Bootstrap core CSS -->
     <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-
     <!-- Custom fonts for this template -->
     <link href="{{asset('vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
