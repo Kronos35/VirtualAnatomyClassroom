@@ -1,7 +1,7 @@
 @extends('layouts.show-layout')
 
 @section('card-header')
-Profile
+User Profile
 @endsection
 
 @section('body')
