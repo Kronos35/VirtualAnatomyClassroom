@@ -117,7 +117,7 @@
           
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="/profile" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
       @include('layouts.partials.sidebar-menu')
