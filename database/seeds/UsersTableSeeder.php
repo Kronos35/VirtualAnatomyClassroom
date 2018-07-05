@@ -69,13 +69,23 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('123456'),
         ]);
 
-        $potato = User::where('name', 'Admin')->first();
-        $potato->assignRole('writer');
+        DB::table('users')->insert([
+            'name' => 'Writer',
+            'email' => 'writer@potato.com',
+            'account_id' => $account_id,
+            'password' => bcrypt('123456'),
+        ]);
 
-        $potato = User::where('name', 'Student')->first();
-        $potato->assignRole('student');
+        $admin = User::where('name', 'Admin')->first();
+        $admin->assignRole('admin');
 
-        $potato = User::where('name', 'Teacher')->first();
-        $potato->assignRole('teacher');
+        $student = User::where('name', 'Student')->first();
+        $student->assignRole('student');
+
+        $teacher = User::where('name', 'Teacher')->first();
+        $teacher->assignRole('teacher');
+
+        $writer = User::where('name', 'Writer')->first();
+        $writer->assignRole('writer');
     }
 }
