@@ -19,8 +19,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('tissues', 'TissueController');
-Route::resource('tissue_types', 'TissueTypeController');
 Route::resource('muscles', 'MuscleController');
 Route::resource('bones', 'BoneController');
-Route::resource('zones', 'ZoneController');
+
+// Writters exclusive routes
+Route::group(['middleware'=>['web', 'CheckWritePermission']], function ()
+{
+	Route::resource('tissue_types', 'TissueTypeController');
+	Route::resource('zones', 'ZoneController');
+});
 Route::get('/profile', 'ProfileController@show');

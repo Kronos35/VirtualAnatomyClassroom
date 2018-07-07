@@ -27,9 +27,9 @@ class TissueController extends Controller
         if($user){
             $tissues=Tissue::all();
             return View::make('tissues.list')
-            ->with('controllerTitle', $this->controllerTitle)
-            ->with('controllerUrl',$this->controllerUrl)
-            ->with('tissues',$tissues);
+                ->with('controllerTitle', $this->controllerTitle)
+                ->with('controllerUrl',$this->controllerUrl)
+                ->with('tissues',$tissues);
         }
         return redirect('/login');
     }
@@ -80,29 +80,23 @@ class TissueController extends Controller
     public function edit(Request $request, Tissue $tissue=null)
     {
         //
-        $user=Auth::user();
-        // dd($user->can('edit articles'));
-        if ($user) {
-            $tissue_types=TissueType::get(['id','name']);
-            $tissueTypes=[];
-            $tissueTypes['']='Select';
-            foreach ($tissue_types->toArray() as $tt) {
-                $tissueTypes[$tt['id']]=$tt['name'];
-            }
-            $zone_list=Zone::get(['id','name']);
-            $zones=[];
-            $zones['']='Select';
-            foreach ($zone_list->toArray() as $z) {
-                $zones[$z['id']]=$z['name'];
-            }
-            return View::make('tissues.create')
-                ->with('tissueTypes',$tissueTypes)
-                ->with('record',$tissue)
-                ->with('zones',$zones)
-                ->with('controllerUrl',$this->controllerUrl);
-            $user=Auth::user();
+        $tissue_types=TissueType::get(['id','name']);
+        $tissueTypes=[];
+        $tissueTypes['']='Select';
+        foreach ($tissue_types->toArray() as $tt) {
+            $tissueTypes[$tt['id']]=$tt['name'];
         }
-        return redirect('/login');
+        $zone_list=Zone::get(['id','name']);
+        $zones=[];
+        $zones['']='Select';
+        foreach ($zone_list->toArray() as $z) {
+            $zones[$z['id']]=$z['name'];
+        }
+        return View::make('tissues.create')
+            ->with('tissueTypes',$tissueTypes)
+            ->with('record',$tissue)
+            ->with('zones',$zones)
+            ->with('controllerUrl',$this->controllerUrl);
     }
 
     /**

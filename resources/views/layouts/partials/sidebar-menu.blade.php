@@ -18,12 +18,14 @@
             <p>List</p>
           </a>
         </li>
+        @if((Auth::user())->can('create articles'))
         <li class="nav-item">
           <a href="/tissues/create" class="nav-link">
             <i class="fa ion-plus-round nav-icon"></i>
             <p>create</p>
           </a>
         </li>
+        @endif
       </ul>
     </li>
     <li class="nav-item has-treeview">
@@ -41,12 +43,14 @@
             <p>List</p>
           </a>
         </li>
+        @if((Auth::user())->can('create articles'))
         <li class="nav-item">
           <a href="/tissue_types/create" class="nav-link">
             <i class="fa ion-plus-round nav-icon"></i>
             <p>create</p>
           </a>
         </li>
+        @endif
       </ul>
     </li>
     <li class="nav-item has-treeview">
@@ -64,12 +68,14 @@
             <p>List</p>
           </a>
         </li>
+        @if((Auth::user())->can('create articles'))
         <li class="nav-item">
           <a href="/bones/create" class="nav-link">
             <i class="fa ion-plus-round nav-icon"></i>
             <p>create</p>
           </a>
         </li>
+        @endif
       </ul>
     </li>
     <li class="nav-item has-treeview">
@@ -87,8 +93,32 @@
             <p>List</p>
           </a>
         </li>
+        @if((Auth::user())->can('create articles'))
         <li class="nav-item">
           <a href="/muscles/create" class="nav-link">
+            <i class="fa ion-plus-round nav-icon"></i>
+            <p>create</p>
+          </a>
+        </li>
+        @endif
+      </ul>
+    </li>
+    <li class="nav-item has-treeview">
+      <a href="#" class="nav-link">
+        <i class="right fa ion-compass nav-icon"></i>
+        <p>
+          Zones <i class="right fa fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="/zones" class="nav-link">
+            <i class="fa ion-ios-list-outline nav-icon"></i>
+            <p>List</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/zones/create" class="nav-link">
             <i class="fa ion-plus-round nav-icon"></i>
             <p>create</p>
           </a>
