@@ -29,20 +29,32 @@ class UsersTableSeeder extends Seeder
         $permit_ban_articles = Permission::create(['name' => 'ban articles']);
         $permit_edit_articles = Permission::create(['name' => 'edit articles']);
         $permit_create_articles = Permission::create(['name' => 'create articles']);
+        $permit_add_students = Permission::create(['name' => 'create students']);
+        $permit_create_admins = Permission::create(['name' => 'create admins']);
+        $permit_create_users = Permission::create(['name' => 'create users']);
+        $permit_create_groups = Permission::create(['name' => 'create groups']);
         $permit_read = Permission::create(['name' => 'read articles']);
         
         // Permission assignment
+        // Administrator permissions
         $admin->givePermissionTo($permit_ban_users);
         $admin->givePermissionTo($permit_ban_articles);
         $admin->givePermissionTo($permit_edit_articles);
         $admin->givePermissionTo($permit_create_articles);
+        $admin->givePermissionTo($permit_add_students);
+        $admin->givePermissionTo($permit_create_groups);
+        $admin->givePermissionTo($permit_create_users);
         $admin->givePermissionTo($permit_read);
 
+        // Wirtter permissions
         $writer->givePermissionTo($permit_ban_articles);
         $writer->givePermissionTo($permit_create_articles);
         $writer->givePermissionTo($permit_read);
 
+        // Student permissions
         $student->givePermissionTo($permit_read);
+        
+        // Teacher permissions
         $teacher->givePermissionTo($permit_read);
 
         // Create user potato
