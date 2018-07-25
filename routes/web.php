@@ -27,5 +27,6 @@ Route::group(['middleware'=>['web', 'CheckWritePermission']], function ()
 {
 	Route::resource('tissue_types', 'TissueTypeController');
 	Route::resource('zones', 'ZoneController');
+	Route::resource('groups', 'GroupController');
 });
 Route::get('/profile', 'ProfileController@show');

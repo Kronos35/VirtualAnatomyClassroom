@@ -125,6 +125,28 @@
         </li>
       </ul>
     </li>
+    <li class="nav-item has-treeview">
+      <a href="#" class="nav-link">
+        <i class="right fas fa-school nav-icon"></i>
+        <p>
+          Groups <i class="right fa fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="/groups" class="nav-link">
+            <i class="fa ion-ios-list-outline nav-icon"></i>
+            <p>List</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/groups/create" class="nav-link">
+            <i class="fa ion-plus-round nav-icon"></i>
+            <p>create</p>
+          </a>
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav>
 <!-- /.sidebar-menu -->
