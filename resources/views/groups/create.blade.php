@@ -22,12 +22,6 @@
         {!! $errors->first('name', '<p class="invalid-feedback">:message</p>') !!}
     </div>
     <br>
-    <div class="form-group {{ $errors->has('content') ? 'has-danger' : '' }}">
-        {{Form::label('content', 'Content')}}:
-        {{ Form::textarea('content', null, array('class' => $errors->has('content') ? 'form-control  is-invalid' : 'form-control')) }}
-        {!! $errors->first('content', '<p class="invalid-feedback">:message</p>') !!}
-    </div>
-    <br>
     <div class="form-group {{ $errors->has('description') ? 'has-danger' : '' }}">
         {{Form::label('description', 'Description')}}:
         {{ Form::textarea('description', null, array('class' => $errors->has('description') ? 'form-control  is-invalid' : 'form-control')) }}

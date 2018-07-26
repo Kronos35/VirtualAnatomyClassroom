@@ -79,14 +79,19 @@ class TissueController extends Controller
      */
     public function edit(Request $request, Tissue $tissue=null)
     {
-        //
+        // Retrieve all tissue types
         $tissue_types=TissueType::get(['id','name']);
+
+        // Format all tissue types for processing
         $tissueTypes=[];
         $tissueTypes['']='Select';
         foreach ($tissue_types->toArray() as $tt) {
             $tissueTypes[$tt['id']]=$tt['name'];
         }
+
+        // Retrieve all zones
         $zone_list=Zone::get(['id','name']);
+        // Format all zones for processing
         $zones=[];
         $zones['']='Select';
         foreach ($zone_list->toArray() as $z) {

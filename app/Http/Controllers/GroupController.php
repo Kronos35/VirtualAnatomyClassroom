@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class GroupController extends Controller
 {
     private $controllerTitle = 'Group\'';
-    private $controllerUrl = '/group';
+    private $controllerUrl = '/groups';
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +19,8 @@ class GroupController extends Controller
     public function index()
     {
         // Groups List
-        $groups = Group::all();
+        $groups = Group::where('user_id',(Auth::user())->id)->get();
+
         return View::make('groups.list')
             ->with('controllerUrl', $this->controllerUrl)
             ->with('controllerTitle',$this->controllerTitle)
@@ -34,7 +35,10 @@ class GroupController extends Controller
     public function create(Request $request)
     {
         //
-        $this->edit($request, null);
+        // $this->edit($request, null);
+        return View::make('groups.create')
+            ->with('controllerUrl', $this->controllerUrl)
+            ->with('record', null);
     }
 
     /**
@@ -46,6 +50,7 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         //
+        $this->update($request, null);
     }
 
     /**
@@ -59,7 +64,7 @@ class GroupController extends Controller
         //
         return View::make('groups.show')
             ->with('controllerUrl', $this->controllerUrl)
-            ->with('group',$zone);
+            ->with('group',$group);
     }
 
     /**
@@ -73,7 +78,7 @@ class GroupController extends Controller
         //
         return View::make('groups.create')
             ->with('controllerUrl', $this->controllerUrl)
-            ->with('group', $group);
+            ->with('record', $group);
     }
 
     /**
@@ -86,7 +91,21 @@ class GroupController extends Controller
     public function update(Request $request, Group $group = null)
     {
         //
-        
+        $user = Auth::user();
+        if ($user->can('create groups')) {
+            if (!isset($group))
+                $group = new Group;
+            $this->validate($request, [
+                'name' => 'required|max:191',
+                'description' => 'required'
+            ]);
+
+            $group->name = $request->name;
+            $group->user_id = $user->id;
+            $group->description = $request->description;
+            $group->save();
+        }
+        return redirect()->action('GroupController@index')->with('status', 'Success!');
     }
 
     /**
@@ -98,5 +117,9 @@ class GroupController extends Controller
     public function destroy(Group $group)
     {
         //
+        if((Auth::user())->id == $group->user_id){
+            $group->delete();
+            return redirect()->action('GroupController@index')->with('status', 'Successfully deleted group');
+        }
     }
 }
