@@ -33,6 +33,7 @@ class UsersTableSeeder extends Seeder
         $permit_create_admins = Permission::create(['name' => 'create admins']);
         $permit_create_users = Permission::create(['name' => 'create users']);
         $permit_create_groups = Permission::create(['name' => 'create groups']);
+        $permit_see_all_groups = Permission::create(['name' => 'see all groups']);
         $permit_create_tests = Permission::create(['name' => 'create tests']);
         $permit_read = Permission::create(['name' => 'read articles']);
 
@@ -44,6 +45,7 @@ class UsersTableSeeder extends Seeder
         $admin->givePermissionTo($permit_create_articles);
         $admin->givePermissionTo($permit_add_students);
         $admin->givePermissionTo($permit_create_groups);
+        $admin->givePermissionTo($permit_see_all_groups);
         $admin->givePermissionTo($permit_create_tests);
         $admin->givePermissionTo($permit_create_users);
         $admin->givePermissionTo($permit_read);
@@ -58,8 +60,8 @@ class UsersTableSeeder extends Seeder
         
         // Teacher permissions
         $teacher->givePermissionTo($permit_read);
-        $admin->givePermissionTo($permit_create_groups);
-        $admin->givePermissionTo($permit_create_tests);
+        $teacher->givePermissionTo($permit_create_groups);
+        $teacher->givePermissionTo($permit_create_tests);
 
         // Create user potato
         DB::table('users')->insert([

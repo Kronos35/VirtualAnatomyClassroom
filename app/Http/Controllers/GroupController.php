@@ -19,8 +19,12 @@ class GroupController extends Controller
     public function index()
     {
         // Groups List
-        $groups = Group::where('user_id',(Auth::user())->id)->get();
-
+        $user=Auth::user();
+        if ($user->can('see all groups')) {
+            $groups = Group::where('account_id',$user->account_id)->get();
+        } else {
+            $groups = Group::where('user_id',$user->id)->get();
+        }
         return View::make('groups.list')
             ->with('controllerUrl', $this->controllerUrl)
             ->with('controllerTitle',$this->controllerTitle)
@@ -51,6 +55,7 @@ class GroupController extends Controller
     {
         //
         $this->update($request, null);
+        return redirect()->action('GroupController@index')->with('status', 'Success!');
     }
 
     /**
@@ -92,7 +97,7 @@ class GroupController extends Controller
     {
         //
         $user = Auth::user();
-        if ($user->can('create groups')) {
+        if (($user->can('create groups' && $user->id == $group->user_id) || $user->can('see all groups') )) {
             if (!isset($group))
                 $group = new Group;
             $this->validate($request, [
@@ -104,8 +109,9 @@ class GroupController extends Controller
             $group->user_id = $user->id;
             $group->description = $request->description;
             $group->save();
+            return redirect()->action('GroupController@index')->with('status', 'Success!');
         }
-        return redirect()->action('GroupController@index')->with('status', 'Success!');
+        return redirect()->action('GroupController@index')->with('error', 'Looks like you don\'t have permission to do this!');
     }
 
     /**
@@ -117,7 +123,8 @@ class GroupController extends Controller
     public function destroy(Group $group)
     {
         //
-        if((Auth::user())->id == $group->user_id){
+        $user = Auth::user();
+        if($user->id == $group->user_id || $user->can('delete all groups')){
             $group->delete();
             return redirect()->action('GroupController@index')->with('status', 'Successfully deleted group');
         }
