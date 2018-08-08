@@ -4,7 +4,7 @@
     {{$controllerTitle}} list
 @endsection
 
-@section('body')
+@section('instance_body')
     @foreach ($groups as $group)
         <tr>
             <td>{{$group->name}}</td>
@@ -26,4 +26,7 @@
             </td>
         </tr>
     @endforeach
+@endsection
+@section('pagination')
+{{$groups->render()}}
 @endsection

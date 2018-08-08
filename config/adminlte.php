@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => config('app.name'),
+    'title' => 'VesaliusVR',
 
     'title_prefix' => '',
 
@@ -120,7 +120,24 @@ return [
                 ],
                 [
                     'text' => 'Create',
-                    'url' => 'tissues/create',
+                    'url' => '/tissues/create',
+                    'icon' => 'fa ion-plus-round',
+                    'can' => 'create articles',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Tissues types',
+            'icon' => 'fa flaticon-x-ray-of-lungs',
+            'submenu' => [
+                [
+                    'text' => 'List',
+                    'url'  => '/tissue_types',
+                    'icon' => 'fa ion-ios-list-outline',
+                ],
+                [
+                    'text' => 'Create',
+                    'url' => '/tissue_types/create',
                     'icon' => 'fa ion-plus-round',
                     'can' => 'create articles',
                 ],
@@ -138,7 +155,7 @@ return [
                 [
                     'text' => 'Create',
                     'icon' => 'fa ion-plus-round',
-                    'url' => 'muscles/create',
+                    'url' => '/muscles/create',
                     'can' => 'create articles',
                 ],
             ]
@@ -155,7 +172,7 @@ return [
                 [
                     'text' => 'Create',
                     'icon' => 'fa ion-plus-round',
-                    'url' => 'bones/create',
+                    'url' => '/bones/create',
                     'can' => 'create articles',
                 ],
             ]
@@ -172,7 +189,25 @@ return [
                 [
                     'text' => 'Create',
                     'icon' => 'fa ion-plus-round',
-                    'url' => 'zones/create',
+                    'url' => '/zones/create',
+                    'can' => 'create articles',
+                ],
+            ]
+        ],
+        'PROFESOR PANEL', 
+        [
+            'text' => 'Groups',
+            'icon' => 'fa fa-school',
+            'submenu' => [
+                [
+                    'text' => 'List',
+                    'icon' => 'fa ion-ios-list-outline',
+                    'url'  => '/groups',
+                ],
+                [
+                    'text' => 'Create',
+                    'icon' => 'fa ion-plus-round',
+                    'url' => '/groups/create',
                     'can' => 'create articles',
                 ],
             ]
@@ -226,7 +261,7 @@ return [
                 ],
             ],
         ],
-        'LABELS',
+        /*'LABELS',
         [
             'text'       => 'Important',
             'icon_color' => 'red',
@@ -238,7 +273,7 @@ return [
         [
             'text'       => 'Information',
             'icon_color' => 'aqua',
-        ],
+        ],*/
     ],
 
     /*

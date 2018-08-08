@@ -27,3 +27,6 @@
         </tr>
     @endforeach
 @endsection
+@section('pagination')
+{{$zones->render()}}
+@endsection

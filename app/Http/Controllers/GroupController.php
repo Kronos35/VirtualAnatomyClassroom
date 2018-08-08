@@ -11,6 +11,7 @@ class GroupController extends Controller
 {
     private $controllerTitle = 'Group\'';
     private $controllerUrl = '/groups';
+    
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +22,9 @@ class GroupController extends Controller
         // Groups List
         $user=Auth::user();
         if ($user->can('see all groups')) {
-            $groups = Group::where('account_id',$user->account_id)->get();
+            $groups = Group::where('account_id',$user->account_id)->paginate(10);
         } else {
-            $groups = Group::where('user_id',$user->id)->get();
+            $groups = Group::where('user_id',$user->id)->paginate(10);
         }
         return View::make('groups.list')
             ->with('controllerUrl', $this->controllerUrl)

@@ -6,6 +6,7 @@ use App\Tissue;
 use App\TissueType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
@@ -20,29 +21,32 @@ class MuscleController extends Controller
      */
     public function index()
     {
-        //
-        if (Auth::user()) {
-            $tissues =Tissue::get();
-            $muscles = new Collection;
-            foreach ($tissues as $tissue) {
-                if ($tissue->tissue_type) {
-                    $tissueType = $tissue->tissue_type;
-                    while ($tissueType->tissue_type) {
-                        $tissueType=$tissueType->tissue_type;
-                        if ($tissueType->name == 'Muscles') {
-                            $muscles->push($tissue);
-                        }
-                    }
-                    $tissueType->tissue_type;
-                }
-            }
+        // Muscle type
+        $muscleType = TissueType::where('name', 'Muscles')->first();
+        
+        // Accepted tissueTypes
+        $muscleChildren = DB::table('tissue_types AS tt')
+            ->where('tt.id', $muscleType->id)
+            ->join('tissue_types AS tt2', 'tt.id', '=', 'tt2.tissue_type_id')
+            ->get()
+            ->pluck('id');
 
-            return View::make('tissues.list')
-                ->with('controllerTitle',$this->controllerTitle)
-                ->with('controllerUrl',$this->controllerUrl)
-                ->with('tissues',$muscles);
-        }
-        return redirect('/login');
+        $acceptedTissueTypes = DB::table('tissue_types AS tt')
+            ->where('tt.id', $muscleType->id)
+            ->orWhere('tt.tissue_type_id', $muscleType->id)
+            ->orWhereIn('tt.tissue_type_id', $muscleChildren)
+            ->join('tissue_types AS tt2', 'tt.id', '=', 'tt2.tissue_type_id')
+            ->get()
+            ->pluck('id');
+
+        
+        $muscles =Tissue::whereIn('tissue_type_id', $acceptedTissueTypes)
+            ->paginate(10);
+
+        return View::make('tissues.list')
+            ->with('controllerTitle',$this->controllerTitle)
+            ->with('controllerUrl',$this->controllerUrl)
+            ->with('tissues',$muscles);
     }
 
     /**

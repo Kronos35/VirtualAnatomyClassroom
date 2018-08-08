@@ -25,7 +25,7 @@ class TissueController extends Controller
         //
         $user=Auth::user();
         if($user){
-            $tissues=Tissue::paginate('10')->all();
+            $tissues=Tissue::paginate('10');
             return View::make('tissues.list')
                 ->with('controllerTitle', $this->controllerTitle)
                 ->with('controllerUrl',$this->controllerUrl)

@@ -22,3 +22,6 @@ Tissue Type's List
         </tr>
     @endforeach
 @endsection
+@section('pagination')
+{{$tissueTypes->render()}}
+@endsection

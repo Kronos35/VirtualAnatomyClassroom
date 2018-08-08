@@ -9,7 +9,6 @@
 @endsection
 
 @section('instance_body')
-<div class="container">
     @if( isset($record) )
         {{ Form::model($record, ['method' => 'PATCH', 'url' => ["{$controllerUrl}/{$record->id}"],'id' => 'create']) }}
     @else
@@ -45,5 +44,4 @@
         @endif
         <a class="btn btn-default" href="{{ URL::to($controllerUrl) }}">Cancel</a>
     {{ Form::close() }}
-</div>
 @endsection
