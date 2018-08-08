@@ -4,7 +4,7 @@
     {{$controllerTitle}} list
 @endsection
 
-@section('body')
+@section('instance_body')
     @foreach ($zones as $zone)
         <tr>
             <td>{{$zone->name}}</td>

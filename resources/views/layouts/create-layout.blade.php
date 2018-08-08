@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('content')
+@section('layout_content')
 <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -25,7 +25,7 @@
           <div class="card">
             <!-- /.card-header -->
             <div class="card-body">
-              @yield('body')
+              @yield('instance_body')
             </div>
             <!-- /.card-body -->
           </div>
