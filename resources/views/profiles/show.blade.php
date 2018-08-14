@@ -46,14 +46,14 @@
           </div>
           <!-- /.box -->
 
-          <!-- About Me Box -->
+          <!-- User info Box -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">About Me</h3>
+              <h3 class="box-title">User info</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+              <strong><i class="fa fa-book margin-r-5"></i> About Me</strong>
 
               <p class="text-muted">
                 B.S. in Computer Science from the University of Tennessee at Knoxville
@@ -311,7 +311,7 @@
 
               @if(Auth::user()->id == $user->id)
               <div class="tab-pane" id="settings">
-                {{ Form::open(['url' => '/profile','id' => 'create', 'enctype'=>"multipart/form-data"]) }}
+                {{ Form::open(['url' => '/profile','id' => 'create', 'enctype' => "multipart/form-data", "class" => "form-horizontal" ]) }}
                 @csrf
                 <div class="form-group {{ $errors->has('name') ? 'has-danger' : '' }}">
                     {{Form::label('name', 'Name:', array('class'=> 'col-sm-2 control-label'))}}
@@ -334,40 +334,12 @@
                   {{Form::file('avatar',null, array('class' => $errors->has('avatar') ? 'form-control  is-invalid' : 'form-control'))}}
                   {!! $errors->first('avatar', '<p class="invalid-feedback">:message</p>') !!}
                 </div>
-                <button type="submit" class="btn btn-danger">Submit</button>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-danger">Submit</button>
+                  </div>
+                </div>
                 {{ Form::close() }}
-
-                {{--<form class="form-horizontal" enctype="multipart/form-data" action="/profile" method="POST">
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" name="name" class="form-control" id="inputName" placeholder="{{$user->name}}">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" name="email" class="form-control" id="inputEmail" placeholder="{{$user->email}}">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="inputAvatar" class="col-sm-2 control-label">Update profile image</label>
-
-                    <div class="col-sm-10">
-                      <input type="file" name="avatar" class="form-control" id="inputAvatar">
-                    </div>
-                  </div>
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
-                    </div>
-                  </div>
-                </form> --}}
               </div>
               @endif
               <!-- /.tab-pane -->
