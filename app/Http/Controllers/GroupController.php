@@ -68,6 +68,7 @@ class GroupController extends Controller
     public function show(Group $group)
     {
         //
+        
         return View::make('groups.show')
             ->with('controllerUrl', $this->controllerUrl)
             ->with('group',$group);

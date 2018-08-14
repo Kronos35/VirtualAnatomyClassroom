@@ -55,5 +55,5 @@ Route::group(['middleware'=>['auth']], function ()
 	// Profile routes
 	Route::get('/profile', 'ProfileController@showUserProfile');
 	Route::get('/profile/{user}', 'ProfileController@show');
-	Route::post('/profile', 'ProfileController@updateAvatar');
+	Route::post('/profile', 'ProfileController@updateUserProfile');
 });

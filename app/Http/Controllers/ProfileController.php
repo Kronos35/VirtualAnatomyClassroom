@@ -94,7 +94,7 @@ class ProfileController extends Controller
      * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function updateAvatar(Request $request)
+    public function updateUserProfile(Request $request)
     {
         // Get user and store it 
         $user = Auth::user();
@@ -118,6 +118,18 @@ class ProfileController extends Controller
         // Change user's image
         if ($request->email) {
             $user->email = $request->email;
+        }
+
+        if ($request->about_me || $request->notes) {
+            if (isset($user->profile)) {
+                $profile = $user->profile;
+            } else {
+                $profile = new Profile;
+            }
+            $profile->about_me = $request->about_me;
+            $profile->notes = $request->notes;
+            $profile->user_id = $user->id;
+            $profile->save();
         }
 
         return view('profiles.show')->with('user',$user);
