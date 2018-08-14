@@ -52,5 +52,8 @@ Route::group(['middleware'=>['auth']], function ()
 	Route::get('/zones', 'TissueTypeController@index')->name('zones');
 	Route::get('/zones/{zone}', 'TissueTypeController@show');
 
-	Route::get('/profile', 'ProfileController@show');
+	// Profile routes
+	Route::get('/profile', 'ProfileController@showUserProfile');
+	Route::get('/profile/{user}', 'ProfileController@show');
+	Route::post('/profile', 'ProfileController@updateAvatar');
 });

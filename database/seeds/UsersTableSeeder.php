@@ -19,10 +19,10 @@ class UsersTableSeeder extends Seeder
         // Account
         $account_id = (Account::where('name','UACJ')->first())->id;
         // Roles
-        $admin = Role::create(['name' => 'admin']);
-        $writer = Role::create(['name' => 'writer']);
-        $student = Role::create(['name' => 'student']);
-        $teacher = Role::create(['name' => 'teacher']);
+        $admin = Role::create(['name' => 'System Administrator']);
+        $writer = Role::create(['name' => 'Writer']);
+        $student = Role::create(['name' => 'Student']);
+        $teacher = Role::create(['name' => 'Teacher']);
 
         // Permissions
         $permit_ban_users = Permission::create(['name' => 'ban users']);
@@ -73,7 +73,7 @@ class UsersTableSeeder extends Seeder
 
         // Create user student
         DB::table('users')->insert([
-            'name' => 'student',
+            'name' => 'Student',
             'email' => 'student@potato.com',
             'account_id' => $account_id,
             'password' => bcrypt('123456'),
@@ -81,7 +81,7 @@ class UsersTableSeeder extends Seeder
 
         // Create user student 2
         DB::table('users')->insert([
-            'name' => 'student2',
+            'name' => 'Student2',
             'email' => 'student2@potato.com',
             'account_id' => $account_id,
             'password' => bcrypt('123456'),
@@ -104,15 +104,18 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $admin = User::where('name', 'Admin')->first();
-        $admin->assignRole('admin');
+        $admin->assignRole('System Administrator');
 
         $student = User::where('name', 'Student')->first();
-        $student->assignRole('student');
+        $student->assignRole('Student');
+
+        $student = User::where('name', 'Student2')->first();
+        $student->assignRole('Student');
 
         $teacher = User::where('name', 'Teacher')->first();
-        $teacher->assignRole('teacher');
+        $teacher->assignRole('Teacher');
 
         $writer = User::where('name', 'Writer')->first();
-        $writer->assignRole('writer');
+        $writer->assignRole('Writer');
     }
 }
