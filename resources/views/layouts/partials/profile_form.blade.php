@@ -32,6 +32,14 @@
   </div>
 
   <div class="form-group {{ $errors->has('name') ? 'has-danger' : '' }}">
+      {{Form::label('location', 'Location:', array('class'=> 'col-sm-2 control-label'))}}
+      <div class="col-sm-10">
+      {{ Form::text('location', ((isset($user->profile->location)) ? $user->profile->location : null), array('class' => $errors->has('location') ? 'form-control  is-invalid' : 'form-control', 'placeholder' => 'Leave a note')) }}
+      {!! $errors->first('location', '<p class="invalid-feedback">:message</p>') !!}
+      </div>
+  </div>
+
+  <div class="form-group {{ $errors->has('name') ? 'has-danger' : '' }}">
       {{Form::label('notes', 'Notes:', array('class'=> 'col-sm-2 control-label'))}}
       <div class="col-sm-10">
       {{ Form::text('notes', ((isset($user->profile->notes)) ? $user->profile->notes : null), array('class' => $errors->has('notes') ? 'form-control  is-invalid' : 'form-control', 'placeholder' => 'Leave a note')) }}

@@ -69,6 +69,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'potato@potato.com',
             'account_id' => $account_id,
             'password' => bcrypt('123456'),
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
         // Create user student
@@ -77,14 +78,16 @@ class UsersTableSeeder extends Seeder
             'email' => 'student@potato.com',
             'account_id' => $account_id,
             'password' => bcrypt('123456'),
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
         // Create user student 2
         DB::table('users')->insert([
-            'name' => 'Student2',
+            'name' => 'Student 2',
             'email' => 'student2@potato.com',
             'account_id' => $account_id,
             'password' => bcrypt('123456'),
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
         // Create user Teacher
@@ -93,6 +96,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'teacher@potato.com',
             'account_id' => $account_id,
             'password' => bcrypt('123456'),
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
         // Create user Writer
@@ -101,6 +105,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'writer@potato.com',
             'account_id' => $account_id,
             'password' => bcrypt('123456'),
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
         $admin = User::where('name', 'Admin')->first();
@@ -109,7 +114,7 @@ class UsersTableSeeder extends Seeder
         $student = User::where('name', 'Student')->first();
         $student->assignRole('Student');
 
-        $student = User::where('name', 'Student2')->first();
+        $student = User::where('name', 'Student 2')->first();
         $student->assignRole('Student');
 
         $teacher = User::where('name', 'Teacher')->first();

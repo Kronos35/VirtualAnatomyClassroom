@@ -128,6 +128,7 @@ class ProfileController extends Controller
             }
             $profile->about_me = $request->about_me;
             $profile->notes = $request->notes;
+            $profile->location = $request->location;
             $profile->user_id = $user->id;
             $profile->save();
         }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Profile extends Model
 {
     protected $fillable = [
-    	'about_me','notes', 'user_id'
+    	'about_me','notes', 'user_id', 'location',
     ];
 
     // Get owner of profile

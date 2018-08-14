@@ -489,9 +489,9 @@
                   <ul class="users-list clearfix">
                     @foreach($group->users as $member)
                     <li>
-                      <img src="/uploads/avatars/{{$member->avatar}}" alt="User Image">
-                      <a class="users-list-name" href="#">{{$member->name}}</a>
-                      <span class="users-list-date">Today</span>
+                      <img src="/uploads/avatars/{{ $member->avatar }}" alt="User Image">
+                      <a class="users-list-name" href="#">{{ $member->name }}</a>
+                      <span class="users-list-date">{{ $member->created_at->diffForHumans() }}</span>
                     </li>
                     @endforeach
                   </ul>

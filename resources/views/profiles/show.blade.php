@@ -57,7 +57,7 @@
 
               <p class="text-muted">
                 @if(isset($user->profile))
-                  {{$user->profile->about_me}}
+                  {{ $user->profile->about_me }}
                 @endif
               </p>
 
@@ -65,7 +65,11 @@
 
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
-              <p class="text-muted">Malibu, California</p>
+              <p class="text-muted">
+                @if(isset($user->profile))
+                  {{ $user->profile->location }}
+                @endif
+              </p>
 
               <hr>
 
