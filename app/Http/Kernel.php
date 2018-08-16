@@ -60,6 +60,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'CheckAdminRole' => \App\Http\Middleware\CheckAdminRole::class,
         'CheckWriterRole' => \App\Http\Middleware\CheckWriterRole::class,
-        'CheckWritePermission' => \App\Http\Middleware\CheckWritePermission::class
+        'CheckWritePermission' => \App\Http\Middleware\CheckWritePermission::class,
+        'CheckTestPermissions' => \App\Http\Middleware\CheckTestPermissions::class,
     ];
 }

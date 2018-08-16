@@ -33,3 +33,17 @@
     </section>
     <!-- /.content -->
 @endsection
+
+@section('js')
+<script type="text/javascript">
+$( "#datepicker" ).datepicker({
+  format: "mm/dd/yy",
+  weekStart: 0,
+  calendarWeeks: true,
+  autoclose: true,
+  todayHighlight: true,
+  rtl: true,
+  orientation: "auto"
+});
+</script>
+@endsection

@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
         $student = Role::create(['name' => 'Student']);
         $teacher = Role::create(['name' => 'Teacher']);
 
-        // Permissions
+        // Permissions creation
         $permit_ban_users = Permission::create(['name' => 'ban users']);
         $permit_ban_articles = Permission::create(['name' => 'ban articles']);
         $permit_edit_articles = Permission::create(['name' => 'edit articles']);
@@ -35,6 +35,8 @@ class UsersTableSeeder extends Seeder
         $permit_create_groups = Permission::create(['name' => 'create groups']);
         $permit_see_all_groups = Permission::create(['name' => 'see all groups']);
         $permit_create_tests = Permission::create(['name' => 'create tests']);
+        $permit_create_lectures = Permission::create(['name' => 'create lectures']);
+        $permit_answer_tests = Permission::create(['name' => 'answer tests']);
         $permit_read = Permission::create(['name' => 'read articles']);
 
         // Permission assignment
@@ -44,24 +46,29 @@ class UsersTableSeeder extends Seeder
         $admin->givePermissionTo($permit_edit_articles);
         $admin->givePermissionTo($permit_create_articles);
         $admin->givePermissionTo($permit_add_students);
+        $admin->givePermissionTo($permit_create_admins);
         $admin->givePermissionTo($permit_create_groups);
         $admin->givePermissionTo($permit_see_all_groups);
         $admin->givePermissionTo($permit_create_tests);
+        $admin->givePermissionTo($permit_create_lectures);
+        $admin->givePermissionTo($permit_answer_tests);
         $admin->givePermissionTo($permit_create_users);
         $admin->givePermissionTo($permit_read);
 
-        // Wirtter permissions
+        // Writter permissions
         $writer->givePermissionTo($permit_ban_articles);
         $writer->givePermissionTo($permit_create_articles);
         $writer->givePermissionTo($permit_read);
 
         // Student permissions
         $student->givePermissionTo($permit_read);
+        $student->givePermissionTo($permit_answer_tests);
         
         // Teacher permissions
         $teacher->givePermissionTo($permit_read);
         $teacher->givePermissionTo($permit_create_groups);
         $teacher->givePermissionTo($permit_create_tests);
+        $teacher->givePermissionTo($permit_create_lectures);
 
         // Create user potato
         DB::table('users')->insert([

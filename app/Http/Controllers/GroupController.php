@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
 class GroupController extends Controller
 {
-    private $controllerTitle = 'Group\'';
+    private $controllerTitle = 'Groups';
     private $controllerUrl = '/groups';
     
     /**
@@ -21,10 +22,14 @@ class GroupController extends Controller
     {
         // Groups List
         $user=Auth::user();
+
         if ($user->can('see all groups')) {
-            $groups = Group::where('account_id',$user->account_id)->paginate(10);
+            $groups = Group::where('account_id',$user->account_id)->orWhere('user_id',$user->id)->paginate(10);
         } else {
-            $groups = Group::where('user_id',$user->id)->paginate(10);
+            $user_groups = DB::table('user_group')
+                ->where('user_id', $user->id)
+                ->pluck('group_id');
+            $groups = Group::whereIn('id', $user_groups)->paginate(10);
         }
         return View::make('groups.list')
             ->with('controllerUrl', $this->controllerUrl)
@@ -40,10 +45,7 @@ class GroupController extends Controller
     public function create(Request $request)
     {
         //
-        // $this->edit($request, null);
-        return View::make('groups.create')
-            ->with('controllerUrl', $this->controllerUrl)
-            ->with('record', null);
+        return $this->edit($request, null);
     }
 
     /**
@@ -99,17 +101,23 @@ class GroupController extends Controller
     {
         //
         $user = Auth::user();
-        if (($user->can('create groups' && $user->id == $group->user_id) || $user->can('see all groups') )) {
-            if (!isset($group))
-                $group = new Group;
-            $this->validate($request, [
-                'name' => 'required|max:191',
-                'description' => 'required'
-            ]);
+        if (!isset($group)){
+            $group = new Group;
+            $userFlag = $user->can('create groups');
+        } else {
+            $userFlag = $user->can('create groups' && $user->id == $group->user_id);
+        }
 
+        // dd($userFlag);
+        $this->validate($request, [
+            'name' => 'required|max:191',
+            'description' => 'required'
+        ]);
+        if ($userFlag || $user->can('see all groups') ) {
             $group->name = $request->name;
             $group->user_id = $user->id;
             $group->description = $request->description;
+            $group->account_id = $user->account_id;
             $group->save();
             return redirect()->action('GroupController@index')->with('status', 'Success!');
         }

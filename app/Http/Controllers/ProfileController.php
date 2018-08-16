@@ -120,7 +120,7 @@ class ProfileController extends Controller
             $user->email = $request->email;
         }
 
-        if ($request->about_me || $request->notes) {
+        if ($request->about_me || $request->notes || $request->location) {
             if (isset($user->profile)) {
                 $profile = $user->profile;
             } else {

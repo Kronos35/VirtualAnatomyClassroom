@@ -3,10 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class CheckAdminRole
+class CheckTestPermissions
 {
     /**
      * Handle an incoming request.
@@ -17,14 +16,10 @@ class CheckAdminRole
      */
     public function handle($request, Closure $next)
     {
-        // Checking if authenticated user is Admin
-        $roles = (Auth::user())->getRoleNames();
-        foreach ($roles as $role) {
-            if ($role == 'Admin') {
-                return redirect('home');
-            }
+        $user = Auth::user();
+        if (!$user->can('create tests')) {
+            return redirect('home');
         }
-        
         return $next($request);
     }
 }

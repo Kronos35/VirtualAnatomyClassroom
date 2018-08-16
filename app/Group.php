@@ -16,8 +16,13 @@ class Group extends Model
 	}
 
 	// Get all users assigned to 
-	public function users()
+	public function students()
 	{
 		return $this->belongsToMany('App\User', 'user_group');
+	}
+
+	public function tests()
+	{
+		return $this->hasMany('App\Test');
 	}
 }

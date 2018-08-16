@@ -29,10 +29,26 @@ Route::group(['middleware'=>['auth']], function ()
 		Route::resource('bones', 'BoneController')->except(['index', 'show']);
 		Route::resource('tissue_types', 'TissueTypeController')->except(['index', 'show']);
 		Route::resource('zones', 'ZoneController')->except(['index', 'show']);
-		Route::resource('groups', 'GroupController');
 	});
 
-	// "Public" tissues views
+	// Teachers routes
+	Route::group(['middleware'=>['web', 'CheckTestPermissions']], function ()
+	{
+		Route::resource('tests', 'TestController')->except(['index', 'show']);
+		Route::resource('questions', 'QuestionController')->only(['update', 'store', 'destroy']);
+		Route::resource('options', 'OptionController')->only(['update', 'store', 'destroy']);
+		Route::resource('groups', 'GroupController')->except(['index', 'show']);
+	});	
+
+	// "Public" Group routes
+	Route::get('/tests', 'TestController@index')->name('tests');
+	Route::get('/tests/{test}', 'TestController@show');
+
+	// "Public" Group routes
+	Route::get('/groups', 'GroupController@index')->name('groups');
+	Route::get('/groups/{group}', 'GroupController@show');
+
+	// "Public" tissues routes
 	Route::get('/tissues', 'TissueController@index')->name('tissues');
 	Route::get('/tissues/{tissue}', 'TissueController@show');
 

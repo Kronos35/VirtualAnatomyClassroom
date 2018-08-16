@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Question;
 use App\Option;
 use Illuminate\Http\Request;
 
-class QuestionController extends Controller
+class OptionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,34 +35,16 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        // Adding questions
-        foreach ($request->questions as $reqQ) {
-            // dd($reqQ);
-            $question = new Question;
-            $question->body = $reqQ['body'];
-            $question->test_id = $reqQ['test_id'];
-            $question->save();
-
-            // Adding options to each question
-            foreach ($reqQ['options'] as $opt) {
-                $option = new Option;
-                $option->body = $opt['body'];
-                $option->is_answer = $opt['is_answer'];
-                $option->question_id = $question->id;
-                $option->save();
-            }
-        }
-
-        
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Question  $question
+     * @param  \App\Option  $option
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $question)
+    public function show(Option $option)
     {
         //
     }
@@ -71,10 +52,10 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Question  $question
+     * @param  \App\Option  $option
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit(Option $option)
     {
         //
     }
@@ -83,26 +64,21 @@ class QuestionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Question  $question
+     * @param  \App\Option  $option
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question = null)
+    public function update(Request $request, Option $option)
     {
         //
-        if (!isset($question)) {
-            $question = new Question;
-        }
-
-        dd($request->questions);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Question  $question
+     * @param  \App\Option  $option
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
+    public function destroy(Option $option)
     {
         //
     }

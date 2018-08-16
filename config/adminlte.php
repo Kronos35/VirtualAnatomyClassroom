@@ -197,7 +197,7 @@ return [
         'PROFESOR PANEL', 
         [
             'text' => 'Groups',
-            'icon' => 'fa fa-school',
+            'icon' => 'users',
             'submenu' => [
                 [
                     'text' => 'List',
@@ -208,7 +208,41 @@ return [
                     'text' => 'Create',
                     'icon' => 'fa ion-plus-round',
                     'url' => '/groups/create',
-                    'can' => 'create articles',
+                    'can' => 'create groups',
+                ],
+            ]
+        ],
+        [
+            'text' => 'Tests',
+            'icon' => 'edit',
+            'submenu' => [
+                [
+                    'text' => 'List',
+                    'icon' => 'fa ion-ios-list-outline',
+                    'url'  => '/tests',
+                ],
+                [
+                    'text' => 'Create',
+                    'icon' => 'fa ion-plus-round',
+                    'url' => '/tests/create',
+                    'can' => 'create tests',
+                ],
+            ]
+        ],
+        [
+            'text' => 'Lectures',
+            'icon' => 'book',
+            'submenu' => [
+                [
+                    'text' => 'List',
+                    'icon' => 'fa ion-ios-list-outline',
+                    'url'  => '/lectures',
+                ],
+                [
+                    'text' => 'Create',
+                    'icon' => 'fa ion-plus-round',
+                    'url' => '/lectures/create',
+                    'can' => 'create lectures',
                 ],
             ]
         ],
@@ -223,44 +257,44 @@ return [
             'url'  => '/profile/settings',
             'icon' => 'lock',
         ],
-        [
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
-            'submenu' => [
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'Level One',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-            ],
-        ],
+        // [
+        //     'text'    => 'Multilevel',
+        //     'icon'    => 'share',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Level One',
+        //             'url'  => '#',
+        //         ],
+        //         [
+        //             'text'    => 'Level One',
+        //             'url'     => '#',
+        //             'submenu' => [
+        //                 [
+        //                     'text' => 'Level Two',
+        //                     'url'  => '#',
+        //                 ],
+        //                 [
+        //                     'text'    => 'Level Two',
+        //                     'url'     => '#',
+        //                     'submenu' => [
+        //                         [
+        //                             'text' => 'Level Three',
+        //                             'url'  => '#',
+        //                         ],
+        //                         [
+        //                             'text' => 'Level Three',
+        //                             'url'  => '#',
+        //                         ],
+        //                     ],
+        //                 ],
+        //             ],
+        //         ],
+        //         [
+        //             'text' => 'Level One',
+        //             'url'  => '#',
+        //         ],
+        //     ],
+        // ],
         /*'LABELS',
         [
             'text'       => 'Important',
