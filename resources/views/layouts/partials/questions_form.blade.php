@@ -93,6 +93,7 @@
       addQuestion: function () {
         var scaff = {
           body: "",
+          error: null,
           test_id: {{$test->id}},
           options: [
             {
@@ -103,18 +104,29 @@
         };
         this.questions.push(scaff);
       },
+      clearData: function () {
+        this.questions = [{
+          body: "",
+          test_id: {{$test->id}},
+          options: [
+            {
+              body: "",
+              is_answer: false
+            }
+          ]
+        },];
+      },
       submit: function () {
         // Encapsulate data
         data = {questions: this.questions};
-        console.log(data);
+        let $this = this;
+        
         // Send data
         axios.post('/questions', data).then( function (response) {
-          window.location.reload(false);
-          console.log(response);
+          $this.clearData();
         }).catch(function (error) {
-          console.log(error);
-        })
-  
+          $this.error = error;
+        });
       }
     }
   });
