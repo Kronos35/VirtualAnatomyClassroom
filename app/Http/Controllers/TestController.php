@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Test;
 use App\Group;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
@@ -22,11 +23,12 @@ class TestController extends Controller
 
         if ($user->can('see all groups')) {
             $tests = Test::paginate(10);
+        } elseif ($user->can('create tests')) {
+            $groups = $user->groups->pluck('id');
+            $tests = Test::whereIn('id', $groups)->paginate(10);
         } else {
-            $user_groups = DB::table('user_group')
-                ->where('user_id', $user->id)
-                ->pluck('group_id');
-            $groups = Group::whereIn('id', $user_groups)->paginate(10);
+            $groups = $user->classes->pluck('id');
+            $tests = Test::whereIn('id', $groups)->paginate(10);
         }
 
         return view('tests.list')

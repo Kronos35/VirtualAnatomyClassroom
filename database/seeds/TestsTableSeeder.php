@@ -2,6 +2,7 @@
 
 use App\Test;
 use App\Group;
+use App\Option;
 use App\Question;
 use Illuminate\Database\Seeder;
 
@@ -9,8 +10,6 @@ class TestsTableSeeder extends Seeder
 {
     /**
      * Create tests for each group stored in the database.
-     *
-     * @return void
      */
     public function createTestsForGroup($groups)
     {
@@ -45,7 +44,7 @@ class TestsTableSeeder extends Seeder
 
 	        foreach ($testsData as $data) {
 	        	$test = Test::create($data);
-	        	$this->createQuestionForTest($test);
+	        	$this->createQuestion($test);
 	        }
 
 	    }
@@ -53,10 +52,8 @@ class TestsTableSeeder extends Seeder
 
     /**
      * Create questions for each test.
-     *
-     * @return void
      */
-    public function createQuestionForTest($test)
+    public function createQuestion($test)
     {
     	$dummy_body = 'Semiotics kogi migas, seitan salvia pok pok vexillologist marfa wayfarers biodiesel direct trade cloud bread +1. Raclette mustache health goth chicharrones, XOXO celiac glossier hoodie 8-bit.';
 		
@@ -65,37 +62,63 @@ class TestsTableSeeder extends Seeder
     			'body' => $dummy_body,
     		    'test_id' => $test->id
     		],
-    		
+
     		[
     			'body' => $dummy_body,
     		    'test_id' => $test->id
     		],
-    		
+
     		[
     			'body' => $dummy_body,
     		    'test_id' => $test->id
     		],
-    		
+
     		[
     			'body' => $dummy_body,
     		    'test_id' => $test->id
     		],
-    		
+
     		[
     			'body' => $dummy_body,
     		    'test_id' => $test->id
     		],
-    		
+
     	];
     	foreach ($questions_data as $question_data) {
     		$question = Question::create($question_data);
+    		$this->createOptions($question);
+    	}
+    }
+
+	/**
+     * Create options for a question
+     */
+    public function createOptions($question)
+    {
+    	$dummy_body = 'Seitan salvia pok pok vexillologist marfa wayfarers biodiesel direct trade cloud bread +1. Raclette mustache health goth chicharrones, XOXO celiac glossier hoodie 8-bit.';
+		
+		$options_data = [
+
+    		[
+    			'body' => 'Yes',
+    			'is_answer' => true,
+    		    'question_id' => $question->id
+    		],
+    		
+    		[
+    			'body' => 'No',
+    			'is_answer' => false,
+    		    'question_id' => $question->id
+    		],
+
+    	];
+    	foreach ($options_data as $option_data) {
+    		$question = Option::create($option_data);
     	}
     }
 
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {

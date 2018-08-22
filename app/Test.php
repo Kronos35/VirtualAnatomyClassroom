@@ -19,7 +19,7 @@ class Test extends Model
 
     public function group()
     {
-    	return $this->belongsToMany('App\Group');
+    	return $this->belongsTo('App\Group');
     }
 
     public function questions()
