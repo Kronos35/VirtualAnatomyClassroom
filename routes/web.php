@@ -65,8 +65,8 @@ Route::group(['middleware'=>['auth']], function ()
 	Route::get('/tissue_types/{tissueType}', 'TissueTypeController@show');
 
 	// "Public" zone routes
-	Route::get('/zones', 'TissueTypeController@index')->name('zones');
-	Route::get('/zones/{zone}', 'TissueTypeController@show');
+	Route::get('/zones', 'ZoneController@index')->name('zones');
+	Route::get('/zones/{zone}', 'ZoneController@show');
 
 	// Profile routes
 	Route::get('/profile', 'ProfileController@showUserProfile');

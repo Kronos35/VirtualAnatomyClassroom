@@ -19,7 +19,8 @@ class ZoneController extends Controller
     public function index()
     {
         //
-        $zones = Zone::all();
+        $zones = Zone::paginate(10);
+        // dd($zones);
         return View::make('zones.list')
             ->with('controllerTitle',$this->controllerTitle)
             ->with('controllerUrl', $this->controllerUrl)

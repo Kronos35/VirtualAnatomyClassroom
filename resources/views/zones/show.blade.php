@@ -8,8 +8,7 @@
 <a class="btn btn-primary" href="{{ URL::to($controllerUrl) }}/{{$zone->id}}/edit">Edit</a>
 @endsection
 
-@section('body')
-<div class="container">
+@section('instance_body')
     <h4> Content: </h4>
     {{$zone->content}}
     <br>
@@ -18,5 +17,4 @@
     {{$zone->description}}
     <br>
     <br>
-</div>
 @endsection
