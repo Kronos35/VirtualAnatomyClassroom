@@ -32,7 +32,7 @@
           <span class="info-box-icon bg-red"><i class="fa fa-pencil"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">Tests</span>
-            <span class="info-box-number">41,410</span>
+            <span class="info-box-number">{{ $group->tests->count() }}</span>
           </div>
           <!-- /.info-box-content -->
         </div>
@@ -220,14 +220,22 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach($group->tests as $test)
                 <tr>
-                  <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                  <td>Call of Duty IV</td>
-                  <td><span class="label label-success">Shipped</span></td>
+                  <td><a href="/tests/{{$test->id}}">{{ $test->id }}</a></td>
+                  <td>{{ $test->name }}</td>
                   <td>
-                    <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
+                    @if($test->due_at->gt(date('Y-m-d H:i:s')))
+                    <span class="label label-success">Pending</span>
+                    @else
+                    <span class="label label-danger">Expired</span>
+                    @endif
+                  </td>
+                  <td>
+                    <div class="sparkbar" data-color="#00a65a" data-height="20">{{ $test->due_at." ".date('Y-m-d H:i:s') }}</div>
                   </td>
                 </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -451,7 +459,7 @@
                 @foreach($group->students as $member)
                 <li>
                   <img src="/uploads/avatars/{{ $member->avatar }}" alt="User Image">
-                  <a class="users-list-name" href="#">{{ $member->name }}</a>
+                  <a class="users-list-name" href="/profile/{{$member->id}}">{{ $member->name }}</a>
                   <span class="users-list-date">{{ $member->created_at->diffForHumans() }}</span>
                 </li>
                 @endforeach
