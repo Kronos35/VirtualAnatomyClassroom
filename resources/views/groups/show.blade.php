@@ -232,7 +232,7 @@
                     @endif
                   </td>
                   <td>
-                    <div class="sparkbar" data-color="#00a65a" data-height="20">{{ $test->due_at." ".date('Y-m-d H:i:s') }}</div>
+                    <div class="sparkbar" data-color="#00a65a" data-height="20">{{ $test->due_at->diffForHumans() }}</div>
                   </td>
                 </tr>
                 @endforeach
@@ -243,12 +243,106 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix">
-          <a href="/tests/create?group_id={{$group->id}}" class="btn btn-sm btn-info btn-flat pull-left">Create New Test</a>
+          <!-- Button trigger modal -->
+          @if(Auth::user()->can('create tests'))
+          <a class="btn btn-sm btn-info btn-flat pull-left" data-toggle='modal' data-target='#selectTest'>Add Existing Test</a>
+          <a class="btn btn-sm btn-success btn-flat pull-left" data-toggle='modal' data-target='#createTest'>Create New Test</a>
+          @endif
           <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View all tests</a>
         </div>
         <!-- /.box-footer -->
+        
+        @if(Auth::user()->can('create tests'))
+          <!-- Test Creation Modal -->
+          <div class="modal modal-success fade" id="createTest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Create Test for this Group</h4>
+                </div>
+                <div class="modal-body">
+                  @include('layouts.partials.tests_form')
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Test Selection Modal -->
+          <div class="modal modal-info fade" id="selectTest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Select a Test for this Group</h4>
+                </div>
+                <div class="modal-body">
+                  @include('layouts.partials.tests_selection')
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        @endif
+
       </div>
       <!-- /.box -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">
+                Lectures
+              </h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Contacts"
+                  data-widget="chat-pane-toggle">
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body">
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                    <tr>
+                      <th>Test ID</th>
+                      <th>Name</th>
+                      <th>Status</th>
+                      <th>Due date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($group->tests as $test)
+                    <tr>
+                      <td><a href="/tests/{{$test->id}}">{{ $test->id }}</a></td>
+                      <td>{{ $test->name }}</td>
+                      <td>
+                        @if($test->due_at->gt(date('Y-m-d H:i:s')))
+                        <span class="label label-success">Pending</span>
+                        @else
+                        <span class="label label-danger">Expired</span>
+                        @endif
+                      </td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">{{ $test->due_at->diffForHumans() }}</div>
+                      </td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>            
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-6">
           <!-- DIRECT CHAT -->

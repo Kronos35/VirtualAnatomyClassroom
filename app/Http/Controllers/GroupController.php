@@ -25,12 +25,15 @@ class GroupController extends Controller
 
         if ($user->can('see all groups')) {
             $groups = Group::where('account_id',$user->account_id)->orWhere('user_id',$user->id)->paginate(10);
+        } elseif ($user->can('create groups')) {
+            $groups = Group::where('user_id',$user->id)->paginate(10);
         } else {
             $user_groups = DB::table('user_group')
                 ->where('user_id', $user->id)
                 ->pluck('group_id');
             $groups = Group::whereIn('id', $user_groups)->paginate(10);
         }
+
         return View::make('groups.list')
             ->with('controllerUrl', $this->controllerUrl)
             ->with('controllerTitle',$this->controllerTitle)
@@ -122,6 +125,23 @@ class GroupController extends Controller
             return redirect()->action('GroupController@index')->with('status', 'Success!');
         }
         return redirect()->action('GroupController@index')->with('error', 'Looks like you don\'t have permission to do this!');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Test  $test
+     * @return \Illuminate\Http\Response
+     */
+    public function addTest(Group $group, Request $request)
+    {
+        // Add Test to group
+        DB::table('group_test')->insert([
+            'group_id' => $group->id,
+            'test_id' => $request->test_id
+        ]);
+        return redirect()->back();
     }
 
     /**

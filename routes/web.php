@@ -38,11 +38,17 @@ Route::group(['middleware'=>['auth']], function ()
 		Route::resource('questions', 'QuestionController')->only(['update', 'store', 'destroy']);
 		Route::resource('options', 'OptionController')->only(['update', 'store', 'destroy']);
 		Route::resource('groups', 'GroupController')->except(['index', 'show']);
+		Route::post('/groups/{group}/add_test', 'GroupController@addTest');
+		Route::resource('lectures', 'LectureController')->except(['index', 'show']);
 	});	
 
-	// "Public" Group routes
+	// "Public" Test routes
 	Route::get('/tests', 'TestController@index')->name('tests');
 	Route::get('/tests/{test}', 'TestController@show');
+
+	// "Public" Lecture routes
+	Route::get('/lectures', 'LectureController@index')->name('lectures');
+	Route::get('/lectures/{lecture}', 'LectureController@show');
 
 	// "Public" Group routes
 	Route::get('/groups', 'GroupController@index')->name('groups');

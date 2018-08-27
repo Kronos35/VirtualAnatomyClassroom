@@ -5,6 +5,7 @@ use App\Group;
 use App\Option;
 use App\Question;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TestsTableSeeder extends Seeder
 {
@@ -21,7 +22,7 @@ class TestsTableSeeder extends Seeder
 	        		'name' => 'Basic Anatomy',
 	        		'description' => $dummy_text,
 	        		'instructions' => $dummy_text,
-	        		'group_id' => $group->id,
+	        		'user_id' => $group->user->id,
 	        		'due_at' => $due_at
 	        	],
 	        	
@@ -29,7 +30,7 @@ class TestsTableSeeder extends Seeder
 	        		'name' => 'Intermediate Anatomy',
 	        		'description' => $dummy_text,
 	        		'instructions' => $dummy_text,
-	        		'group_id' => $group->id,
+	        		'user_id' => $group->user->id,
 	        		'due_at' => $due_at
 	        	],
 	        	
@@ -37,7 +38,7 @@ class TestsTableSeeder extends Seeder
 	        		'name' => 'Advanced Anatomy',
 	        		'description' => $dummy_text,
 	        		'instructions' => $dummy_text,
-	        		'group_id' => $group->id,
+	        		'user_id' => $group->user->id,
 	        		'due_at' => $due_at
 	        	],
 	        ];
@@ -45,6 +46,10 @@ class TestsTableSeeder extends Seeder
 	        foreach ($testsData as $data) {
 	        	$test = Test::create($data);
 	        	$this->createQuestion($test);
+                DB::table('group_test')->insert([
+                    'test_id' => $test->id,
+                    'group_id' => $group->id
+                ]);
 	        }
 
 	    }

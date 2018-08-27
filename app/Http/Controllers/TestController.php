@@ -88,16 +88,8 @@ class TestController extends Controller
         } else {
             $groupList = $user->classes;
         }
-
-        // Format all tissue types for processing
-        $groups=[];
-        $groups['']='Select';
-        foreach ($groupList->toArray() as $g) {
-            $groups[$g['id']]=$g['name'];
-        }
         
         return view('tests.create')
-            ->with('groups', $groups)
             ->with('controllerUrl', $this->controllerUrl)
             ->with('record', $test);
     }
@@ -122,15 +114,22 @@ class TestController extends Controller
             'description'=>'required',
             'instructions'=>'required',
             'due_at'=>'required',
-            'group_id' => 'required'
         ]);
+
 
         $test->name = $request->name;
         $test->description = $request->description;
         $test->instructions = $request->instructions;
-        $test->group_id = $request->group_id;
+        $test->user_id = Auth::user()->id;
         $test->due_at = $request->due_at;
         $test->save();
+
+        if (isset($request->group_id)) {
+            DB::table('group_test')->insert([
+                'test_id' => $test->id,
+                'group_id' => $request->group_id
+            ]);
+        }
 
         return redirect($this->controllerUrl.'/'.$test->id);
     }

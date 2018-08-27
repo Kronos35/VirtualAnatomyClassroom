@@ -23,6 +23,6 @@ class Group extends Model
 
 	public function tests()
 	{
-		return $this->hasMany('App\Test');
+		return $this->belongsToMany('App\Test');
 	}
 }
