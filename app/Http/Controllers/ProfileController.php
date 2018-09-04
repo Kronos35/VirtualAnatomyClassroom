@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Profile;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use Image;
 
 class ProfileController extends Controller
 {
@@ -46,10 +48,9 @@ class ProfileController extends Controller
      * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
+    public function show(User $user)
     {
         //
-        $user = Auth::user();
         return View::make('profiles.show')->with('user',$user);
     }
 
@@ -85,5 +86,66 @@ class ProfileController extends Controller
     public function destroy(Profile $profile)
     {
         //
+    }
+
+    /**
+     * Update logged in user's profile.
+     *
+     * @param  \App\Profile  $profile
+     * @return \Illuminate\Http\Response
+     */
+    public function updateUserProfile(Request $request)
+    {
+        // Get user and store it 
+        $user = Auth::user();
+
+        // Handle Avatar upload
+        // dd($request->files);
+        if ($request->file('avatar')) {
+            // dd('has file');
+            $avatar = $request->file('avatar');
+            $filename = time().'.'.$avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300,300)->save(public_path('/uploads/avatars/'.$filename));
+            $user->avatar = $filename;
+            $user->save();
+        }
+
+        // Change user's name
+        if ($request->name) {
+            $user->name = $request->name;
+        }
+
+        // Change user's image
+        if ($request->email) {
+            $user->email = $request->email;
+        }
+
+        if ($request->about_me || $request->notes || $request->location) {
+            if (isset($user->profile)) {
+                $profile = $user->profile;
+            } else {
+                $profile = new Profile;
+            }
+            $profile->about_me = $request->about_me;
+            $profile->notes = $request->notes;
+            $profile->location = $request->location;
+            $profile->user_id = $user->id;
+            $profile->save();
+        }
+
+        return view('profiles.show')->with('user',$user);
+    }
+
+    /**
+     * Display the logged in user's profile.
+     *
+     * @param  \App\Profile  $profile
+     * @return \Illuminate\Http\Response
+     */
+    public function showUserProfile()
+    {
+        //
+        $user = Auth::user();
+        return view('profiles.show')->with('user',$user);
     }
 }

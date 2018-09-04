@@ -8,8 +8,7 @@
 <a class="btn btn-primary" href="{{ URL::to($controllerUrl) }}/{{$tissue->id}}/edit">Edit</a>
 @endsection
 
-@section('body')
-<div class="container">
+@section('instance_body')
     <h4> Content: </h4>
     {{$tissue->content}}
     <br>
@@ -20,5 +19,4 @@
     <br>
     <h4>Type: </h4>
     <a href="/tissue_types/{{$tissue->tissue_type->id}}">{{$tissue->tissue_type->name}}</a>
-</div>
 @endsection

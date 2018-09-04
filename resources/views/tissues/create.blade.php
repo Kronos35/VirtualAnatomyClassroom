@@ -8,8 +8,7 @@
     @endif
 @endsection
 
-@section('body')
-<div class="container">
+@section('instance_body')
     @if( isset($record) )
         {{ Form::model($record, ['method' => 'PATCH', 'url' => ["{$controllerUrl}/{$record->id}"],'id' => 'create']) }}
     @else
@@ -56,6 +55,5 @@
         </button>
     @endif
     {{ Form::close() }}
-</div>
 @endsection
 

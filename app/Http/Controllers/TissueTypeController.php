@@ -22,7 +22,7 @@ class TissueTypeController extends Controller
         //
         $user=Auth::user();
         if ($user) {
-            $tissueTypes=TissueType::all();
+            $tissueTypes=TissueType::paginate(10);
             return View::make('tissue_types.list')
             ->with('controllerUrl',$this->controllerUrl)
             ->with('tissueTypes',$tissueTypes);

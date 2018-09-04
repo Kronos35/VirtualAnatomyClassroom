@@ -17,7 +17,7 @@ class CheckAdminRole
      */
     public function handle($request, Closure $next)
     {
-        // Checking if authenticated user is Admin or writer
+        // Checking if authenticated user is Admin
         $roles = (Auth::user())->getRoleNames();
         foreach ($roles as $role) {
             if ($role == 'Admin') {

@@ -4,7 +4,7 @@
     {{$controllerTitle}} list
 @endsection
 
-@section('body')
+@section('instance_body')
     @foreach ($tissues as $tissue)
         <tr>
             <td>{{$tissue->name}}</td>
@@ -26,4 +26,7 @@
             </td>
         </tr>
     @endforeach
+@endsection
+@section('pagination')
+{{$tissues->render()}}
 @endsection

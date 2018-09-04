@@ -13,9 +13,11 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(AccountTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(GroupsTableSeeder::class);
         $this->call(TissueTypesSeeder::class);
         $this->call(ZonesSeeder::class);
         $this->call(MusclesSeeder::class);
         $this->call(BonesSeeder::class);
+        $this->call(TestsTableSeeder::class);
     }
 }

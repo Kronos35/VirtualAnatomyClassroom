@@ -51,8 +51,22 @@ class User extends Authenticatable
         return $this->belongsTo(Account::class);
     }
 
-    public function group()
+    public function classes()
     {
-        return $this->belongsTo(Group::class);
+        return $this->belongsToMany(Group::class, 'user_group');
+    }
+    
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
+    }
+
+    public function tests()
+    {
+        return $this->hasMany(Test::class);
+    }
+
+    public function profile() {
+        return $this->hasOne('App\Profile');
     }
 }

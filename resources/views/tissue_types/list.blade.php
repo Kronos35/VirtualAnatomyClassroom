@@ -3,7 +3,7 @@
 Tissue Type's List
 @endsection
 
-@section('body')
+@section('instance_body')
     @foreach ($tissueTypes as $tissueType)
         <tr>
           <td>{{$tissueType->name}}</td>
@@ -21,4 +21,7 @@ Tissue Type's List
           </td>
         </tr>
     @endforeach
+@endsection
+@section('pagination')
+{{$tissueTypes->render()}}
 @endsection

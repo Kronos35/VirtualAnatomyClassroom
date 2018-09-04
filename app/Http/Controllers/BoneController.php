@@ -22,7 +22,7 @@ class BoneController extends Controller
         //Get Lists
         if (Auth::user()) {
             $tissue_type_id = TissueType::where('name','Bones')->pluck('id');
-            $bones=Tissue::where('tissue_type_id',$tissue_type_id)->get();
+            $bones=Tissue::where('tissue_type_id',$tissue_type_id)->paginate(10);
             return View::make('tissues.list')
                 ->with('controllerTitle',$this->controllerTitle)
                 ->with('controllerUrl',$this->controllerUrl)
