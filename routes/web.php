@@ -35,7 +35,7 @@ Route::group(['middleware'=>['auth']], function ()
 	Route::group(['middleware'=>['web', 'CheckTestPermissions']], function ()
 	{
 		Route::resource('tests', 'TestController')->except(['index', 'show']);
-		Route::resource('questions', 'QuestionController')->only(['update', 'store', 'destroy']);
+		Route::resource('questions', 'QuestionController');
 		Route::resource('options', 'OptionController')->only(['update', 'store', 'destroy']);
 		Route::resource('groups', 'GroupController')->except(['index', 'show']);
 		Route::post('/groups/{group}/add_test', 'GroupController@addTest');

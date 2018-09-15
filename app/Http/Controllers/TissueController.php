@@ -160,8 +160,8 @@ class TissueController extends Controller
     {
         //
         $user = Auth::user();
-        if ($user) {
-            $tissue->delete();   
+        if ($user->can('edit articles')) {
+            $tissue->delete();
         }
         return redirect($this->controllerUrl);
     }

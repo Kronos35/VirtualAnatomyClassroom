@@ -12,7 +12,6 @@
 </section>
 <!-- Main content -->
 <section class="content">
-  @include('layouts.partials.questions_form')
   <!-- /.row -->
   <div class="row">
     <div class="col-md-12">
@@ -34,34 +33,6 @@
               {{$test->instructions}}
             </div>
           </div>
-          <div class="table-responsive">
-            <table class="table no-margin">
-              <tbody>
-                @foreach($test->questions as $question)
-                <tr>
-                  <td class="col-sm-12">
-                    <div class="row">
-                      <div class="col-sm-12">
-                        {{ $question->body }} 
-                      </div>
-                    </div>
-                    <div class="row">
-                    @foreach($question->options as $option)
-                      <div class="col-sm-3">
-                        <input type="checkbox" name="options" id="option1" autocomplete="off" name="option{{ $option->id }}">
-                        <label for="option{{ $option->id }}">
-                        {{ $option->body }}
-                        </label>
-                      </div>
-                    @endforeach
-                    </div>
-                  </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-          </div>
-          <!-- /.table-responsive -->
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix">

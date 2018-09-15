@@ -18,6 +18,5 @@ class DatabaseSeeder extends Seeder
         $this->call(ZonesSeeder::class);
         $this->call(MusclesSeeder::class);
         $this->call(BonesSeeder::class);
-        $this->call(TestsTableSeeder::class);
     }
 }

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Profile;
+use Image;
 use App\User;
+use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
-use Image;
 
 class ProfileController extends Controller
 {

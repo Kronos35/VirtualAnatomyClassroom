@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Question;
-use App\Option;
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\View;
 
 class QuestionController extends Controller
 {
@@ -15,7 +16,12 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        // 
+        $user=Auth::user();
+        $questions = Question::where('user_id', $user->id)->get();
+        return view('questions.list')
+            ->with('questions');
+
     }
 
     /**
@@ -26,6 +32,7 @@ class QuestionController extends Controller
     public function create()
     {
         //
+        return $this->edit(null);
     }
 
     /**
@@ -36,25 +43,7 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        // Adding questions
-        foreach ($request->questions as $reqQ) {
-            // dd($reqQ);
-            $question = new Question;
-            $question->body = $reqQ['body'];
-            $question->test_id = $reqQ['test_id'];
-            $question->save();
 
-            // Adding options to each question
-            foreach ($reqQ['options'] as $opt) {
-                $option = new Option;
-                $option->body = $opt['body'];
-                $option->is_answer = $opt['is_answer'];
-                $option->question_id = $question->id;
-                $option->save();
-            }
-        }
-
-        
     }
 
     /**
@@ -92,8 +81,7 @@ class QuestionController extends Controller
         if (!isset($question)) {
             $question = new Question;
         }
-
-        dd($request->questions);
+        return view()->with('question.create');
     }
 
     /**

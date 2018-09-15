@@ -6,16 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-    // Fillable attributes
-	protected $fillable = ['body', 'test_id'];
-
-    public function test()
+    //
+    public function tests()
     {
-    	return $this->belongsTo('App\Test');
+    	return $this->belongsToMany('App\Test');
     }
 
-    public function options()
-    {
-    	return $this->hasMany('App\Option');
-    }
-}
+ }

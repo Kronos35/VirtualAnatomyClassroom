@@ -15,6 +15,7 @@
         "spatie/laravel-permission": "^2.12"
     },
     "require-dev": {
+        "beyondcode/laravel-er-diagram-generator": "^1.2",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "laracasts/generators": "^1.1",

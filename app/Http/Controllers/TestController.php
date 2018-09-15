@@ -137,11 +137,27 @@ class TestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \Illuminate\http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function answer(Request $request)
+    {
+        dd($request);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
      * @param  \App\Test  $test
      * @return \Illuminate\Http\Response
      */
     public function destroy(Test $test)
     {
         //
+        $user = Auth::user();
+        if ($user->can('create tests') && $test->user = $user) {
+            $test->delete();
+        }
+        return redirect($this->controllerUrl);
     }
 }
