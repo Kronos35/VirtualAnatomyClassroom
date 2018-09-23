@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
+    private $controllerUrl = "/questions";
+
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +20,17 @@ class QuestionController extends Controller
     {
         // 
         $user=Auth::user();
-        $questions = Question::where('user_id', $user->id)->get();
+
+        if ($user->can('see all groups')) {
+            $questions = Question::paginate(10);
+        } elseif ($user->can('create tests')) {
+            $groups = $user->groups->pluck('id');
+            $questions = Question::whereIn('id', $groups)->paginate(10);
+        }
+
         return view('questions.list')
-            ->with('questions');
+            ->with('controllerUrl', $this->controllerUrl)
+            ->with('questions', $questions);
 
     }
 
@@ -43,7 +53,7 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-
+        return $this->update($request);
     }
 
     /**
@@ -63,9 +73,15 @@ class QuestionController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit(Question $question = null)
     {
         //
+        if (!isset($question)) {
+            $question = new Question;
+        }
+        return view('questions.create')
+            ->with('question', $question)
+            ->with('controllerUrl', $this->controllerUrl);
     }
 
     /**
@@ -77,11 +93,7 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question = null)
     {
-        //
-        if (!isset($question)) {
-            $question = new Question;
-        }
-        return view()->with('question.create');
+        
     }
 
     /**

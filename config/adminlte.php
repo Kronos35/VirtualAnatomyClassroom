@@ -230,6 +230,24 @@ return [
             ]
         ],
         [
+            'text' => 'Questions',
+            'icon' => 'edit',
+            'can' => 'create tests',
+            'submenu' => [
+                [
+                    'text' => 'List',
+                    'icon' => 'fa ion-ios-list-outline',
+                    'url'  => '/questions',
+                ],
+                [
+                    'text' => 'Create',
+                    'icon' => 'fa ion-plus-round',
+                    'url' => '/questions/create',
+                    'can' => 'create tests',
+                ],
+            ]
+        ],
+        [
             'text' => 'Lectures',
             'icon' => 'book',
             'submenu' => [

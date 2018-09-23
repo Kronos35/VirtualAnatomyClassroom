@@ -11,6 +11,11 @@ public/storage
 public/hot
 public/uploads/avatars/*
 !public/uploads/avatars/default.png
+public/uploads/tests/*
+!public/uploads/tests/.keep
+public/uploads/questions/*
+!public/uploads/questions/.keep
+
 storage/*.key
 .env.*.php
 .env.php

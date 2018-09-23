@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Test extends Model
 {
     // Mass assignment protection
-    protected $fillable = ['name', 'description', 'instructions', 'group_id'];
+    protected $fillable = ['body', 'image'];
 
     // Date enablement
     protected $dates = [

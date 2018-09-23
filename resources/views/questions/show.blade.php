@@ -32,11 +32,6 @@
               {{$test->instructions}}
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <img src="/uploads/tests/{{$test->image}}">
-            </div>
-          </div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix">
@@ -176,7 +171,7 @@
   <!-- Main row -->
   <div class="row">
     <!-- Left col -->
-    <div class="col-md-12">
+    <div class="col-md-8">
       <!-- TABLE: LATEST ORDERS -->
       <div class="box box-info">
         <div class="box-header with-border">

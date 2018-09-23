@@ -2,9 +2,9 @@
 
 @section('card-header')
     @if(isset($record))
-        Update Test
+        Update Question
     @else
-        Create New Test
+        Create New Question
     @endif
 @endsection
 

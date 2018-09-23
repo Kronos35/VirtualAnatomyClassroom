@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Image;
 use App\Test;
 use App\Group;
 use Illuminate\Http\Request;
@@ -83,11 +84,7 @@ class TestController extends Controller
     {
         //
         $user = Auth::user();
-        if ($user->can('see all groups')) {
-            $groupList = Group::where('user_id', $user->id)->orWhere('account_id', $user->account_id)->get();
-        } else {
-            $groupList = $user->classes;
-        }
+        $groupList = $user->classes;
         
         return view('tests.create')
             ->with('controllerUrl', $this->controllerUrl)
@@ -116,6 +113,12 @@ class TestController extends Controller
             'due_at'=>'required',
         ]);
 
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(300,300)->save(public_path('/uploads/tests/'.$filename));
+            $test->image = $filename;
+        }
 
         $test->name = $request->name;
         $test->description = $request->description;
