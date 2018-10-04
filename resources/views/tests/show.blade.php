@@ -29,7 +29,7 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              {{$test->instructions}}
+              {!!$test->instructions!!}
             </div>
           </div>
           @if($test->image)
@@ -247,7 +247,7 @@
 <div class="container">
   <div class="row">
     <h4>Description: </h4>
-    {{$test->description}}
+    {!!str_limit(strip_tags($test->description), $limit = 150, $end = '...')!!}
     <br>
     <br>
   </div>

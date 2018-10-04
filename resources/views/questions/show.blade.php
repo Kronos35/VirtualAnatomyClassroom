@@ -28,7 +28,7 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              {{$question->body}}
+              {!!$question->body!!}
             </div>
           </div>
           <ul>

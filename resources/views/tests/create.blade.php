@@ -17,31 +17,31 @@
   @csrf
     <div class="form-group {{ $errors->has('name') ? 'has-danger' : '' }}">
       {{Form::label('name', 'Name')}}:
-      {{ Form::text('name', null, array('class' => $errors->has('name') ? 'form-control  is-invalid' : 'form-control')) }}
+      {{ Form::text('name', null, array('class' => $errors->has('name') ? 'form-control my-editor  is-invalid' : 'form-control my-editor')) }}
       {!! $errors->first('name', '<p class="invalid-feedback">:message</p>') !!}
     </div>
     <br>
     <div class="form-group {{ $errors->has('description') ? 'has-danger' : '' }}">
       {{Form::label('description', 'Description')}}:
-      {{ Form::textarea('description', null, array('class' => $errors->has('description') ? 'form-control  is-invalid' : 'form-control')) }}
+      {{ Form::textarea('description', null, array('class' => $errors->has('description') ? 'form-control my-editor  is-invalid' : 'form-control my-editor')) }}
       {!! $errors->first('description', '<p class="invalid-feedback">:message</p>') !!}
     </div>
     <br>
     <div class="form-group {{ $errors->has('description') ? 'has-danger' : '' }}">
       {{Form::label('instructions', 'Instructions')}}:
-      {{ Form::textarea('instructions', null, array('class' => $errors->has('instructions') ? 'form-control  is-invalid' : 'form-control')) }}
+      {{ Form::textarea('instructions', null, array('class' => $errors->has('instructions') ? 'form-control my-editor  is-invalid' : 'form-control my-editor')) }}
       {!! $errors->first('instructions', '<p class="invalid-feedback">:message</p>') !!}
     </div>
     <br>
     <div class="form-group {{ $errors->has('description') ? 'has-danger' : '' }}">
       {{Form::label('due_at', 'Due at')}}:
-      {{ Form::date('due_at', null, array('class' => $errors->has('due_at') ? 'form-control  is-invalid' : 'form-control')) }}
+      {{ Form::date('due_at', null, array('class' => $errors->has('due_at') ? 'form-control my-editor  is-invalid' : 'form-control my-editor')) }}
       {!! $errors->first('due_at', '<p class="invalid-feedback">:message</p>') !!}
     </div>
     <br>
     <div class="form-group {{ $errors->has('description') ? 'has-danger' : '' }}">
       {{Form::label('image', 'Add an image')}}:
-      {{Form::file('image', null, array('class' => $errors->has('image') ? 'form-control  is-invalid' : 'form-control')) }}
+      {{Form::file('image', null, array('class' => $errors->has('image') ? 'form-control my-editor  is-invalid' : 'form-control my-editor')) }}
       {!! $errors->first('image', '<p class="invalid-feedback">:message</p>') !!}
     </div>
     <br>

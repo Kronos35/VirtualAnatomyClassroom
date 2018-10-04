@@ -167,6 +167,7 @@ return [
 
         // Image intervention
         Intervention\Image\ImageServiceProvider::class,
+        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
 

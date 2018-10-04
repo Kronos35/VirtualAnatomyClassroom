@@ -12,13 +12,13 @@
 <br>
 <div class="form-group {{ $errors->has('description') ? 'has-danger' : '' }}">
     {{Form::label('description', 'Description')}}:
-    {{ Form::textarea('description', null, array('class' => $errors->has('description') ? 'form-control  is-invalid' : 'form-control')) }}
+    {{ Form::textarea('description', null, array('class' => $errors->has('description') ? 'form-control my-editor is-invalid' : 'form-control my-editor')) }}
     {!! $errors->first('description', '<p class="invalid-feedback">:message</p>') !!}
 </div>
 <br>
 <div class="form-group {{ $errors->has('instructions') ? 'has-danger' : '' }}">
     {{Form::label('instructions', 'Instructions')}}:
-    {{ Form::textarea('instructions', null, array('class' => $errors->has('instructions') ? 'form-control  is-invalid' : 'form-control')) }}
+    {{ Form::textarea('instructions', null, array('class' => $errors->has('instructions') ? 'form-control my-editor  is-invalid' : 'form-control my-editor')) }}
     {!! $errors->first('instructions', '<p class="invalid-feedback">:message</p>') !!}
 </div>
 <br>

@@ -10,6 +10,8 @@ app/storage/
 # Laravel 5 & Lumen specific
 public/storage
 public/hot
+public/photos/
+!public/photos/.keep
 public/uploads/avatars/*
 !public/uploads/avatars/default.png
 public/uploads/tests/*

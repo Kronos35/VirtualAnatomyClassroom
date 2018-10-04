@@ -7,7 +7,7 @@
 <br>
 <div class="form-group {{ $errors->has('body') ? 'has-danger' : '' }}">
   {{ Form::label('body', 'Body') }}:
-  {{ Form::textarea('body', null, array('class' => $errors->has('body') ? 'form-control  is-invalid' : 'form-control')) }}
+  {{ Form::textarea('body', null, array('class' => $errors->has('body') ? 'form-control my-editor  is-invalid' : 'form-control my-editor')) }}
   {!! $errors->first('body', '<p class="invalid-feedback">:message</p>') !!}
 </div>
 <br>
