@@ -36,6 +36,7 @@ Route::group(['middleware'=>['auth']], function ()
 	{
 		Route::resource('tests', 'TestController')->except(['index', 'show']);
 		Route::resource('questions', 'QuestionController');
+		Route::post('/questions/{question}/add_test', 'QuestionController@addTest');
 		Route::resource('options', 'OptionController')->only(['update', 'store', 'destroy']);
 		Route::resource('groups', 'GroupController')->except(['index', 'show']);
 		Route::post('/groups/{group}/add_test', 'GroupController@addTest');

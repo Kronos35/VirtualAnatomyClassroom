@@ -1,13 +1,12 @@
 @extends('layouts.master')
 @section('edit-button')
-<a class="btn btn-primary" href="{{ URL::to($controllerUrl) }}/{{$test->id}}/edit">Edit</a>
+<a class="btn btn-primary" href="{{ URL::to($controllerUrl) }}/{{$question->id}}/edit">Edit</a>
 @endsection
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    {{$test->name}}
-    <small>Administration panel</small>
+    Question
   </h1>
 </section>
 <!-- Main content -->
@@ -18,7 +17,7 @@
       <!-- TABLE: Questions -->
       <div class="box box-info">
         <div class="box-header with-border">
-          <h3 class="box-title">Instructions</h3>
+          <h3 class="box-title">Body</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
@@ -29,9 +28,14 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              {{$test->instructions}}
+              {{$question->body}}
             </div>
           </div>
+          <ul>
+            @foreach($question->options as $option)
+              <li>{{$option->body}}</li>
+            @endforeach
+          </ul>
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix">
@@ -47,7 +51,7 @@
     <div class="col-md-12">
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Student Performance in Test</h3>
+          <h3 class="box-title">Student Performance with this Question</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
@@ -70,7 +74,7 @@
           <div class="row">
             <div class="col-md-8">
               <p class="text-center">
-                <strong>Due {{$test->due_at->diffForHumans()}} ({{$test->due_at}})</strong>
+                <strong>Created {{$question->created_at->diffForHumans()}}</strong>
               </p>
               <div class="chart">
                 <!-- Sales Chart Canvas -->
@@ -171,7 +175,7 @@
   <!-- Main row -->
   <div class="row">
     <!-- Left col -->
-    <div class="col-md-8">
+    <div class="col-md-6">
       <!-- TABLE: LATEST ORDERS -->
       <div class="box box-info">
         <div class="box-header with-border">
@@ -195,14 +199,18 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach($question->tests as $test)
                 <tr>
-                  <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                  <td>Call of Duty IV</td>
-                  <td><span class="label label-success">Shipped</span></td>
+                  <td><a href="/tests/{{$test->id}}">{{$test->id}}</a></td>
+                  <td>{{$test->name}}</td>
                   <td>
-                    <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
+                    <span class="label label-success">Shipped</span>
+                  </td>
+                  <td>
+                    <div class="sparkbar" data-color="#00a65a" data-height="20"> {{$test->due_at}} </div>
                   </td>
                 </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -210,7 +218,11 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix">
-          <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Create New Test</a>
+          <!-- Button trigger modal -->
+          @if(Auth::user()->can('create tests'))
+          <a class="btn btn-sm btn-info btn-flat pull-left" data-toggle='modal' data-target='#selectTest'>Add Existing Test</a>
+          <a class="btn btn-sm btn-success btn-flat pull-left" data-toggle='modal' data-target='#createTest'>Create New Test</a>
+          @endif
           <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View all tests</a>
         </div>
         <!-- /.box-footer -->
@@ -226,6 +238,114 @@
       </div>
       <!-- /.row -->
     </div>
+    <div class="col-md-6">
+      <!-- TABLE: LATEST ORDERS -->
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Options</h3>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="table-responsive">
+            <table class="table no-margin">
+              <thead>
+                <tr>
+                  <th>Option ID</th>
+                  <th>Body</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($question->options as $option)
+                <tr>
+                  <td>{{$option->id}}</td>
+                  <td>{{$option->body}}</td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+          <!-- /.table-responsive -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+          @if(Auth::user()->can('create tests'))
+          <a class="btn btn-sm btn-success btn-flat pull-left" data-toggle='modal' data-target='#createOption'>Create New Option</a>
+          @endif
+        </div>
+        <!-- /.box-footer -->
+        @if(Auth::user()->can('create tests'))
+          <!-- Option Creation Modal -->
+          <div class="modal modal-success fade" id="createOption" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Create Test for this Group</h4>
+                </div>
+                <div class="modal-body">
+                  @include('layouts.partials.options_form')
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Test Creation Modal -->
+          <div class="modal modal-success fade" id="createTest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Create Test for this Group</h4>
+                </div>
+                <div class="modal-body">
+                  @include('layouts.partials.tests_form')
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Test Selection Modal -->
+          <div class="modal modal-info fade" id="selectTest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Select a Test for this Group</h4>
+                </div>
+                <div class="modal-body">
+                  @include('layouts.partials.tests_selection')
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        @endif
+      </div>
+      <!-- /.box -->
+      <div class="row">
+        <div class="col-md-6">
+        </div>
+        <!-- /.col -->
+        <div class="col-md-6">
+        </div>
+        <!-- /.col -->
+      </div>
+      <!--
+    </div>
+
     <!-- /.col -->
   </div>
   <!-- /.row -->
@@ -233,62 +353,4 @@
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-@endsection
-@section('instance_body')
-<div class="container">
-  <div class="row">
-    <h4>Description: </h4>
-    {{$test->description}}
-    <br>
-    <br>
-  </div>
-  <div class="row">
-    <div class="col-sm-3"><button class="btn btn-primary">Add Student</button></div>
-    <div class="col-sm-3"><button class="btn btn-primary">Create Tests</button></div>
-    <div class="col-sm-3"><button class="btn btn-primary">Create Class</button></div>
-    <div class="col-sm-3"><button class="btn btn-danger" onclick="document.getElementById('delete-group{{$test->id}}').submit();">Delete Group</button></div>
-    <form id="delete-group{{$test->id}}" action="{{ $controllerUrl }}/{{$test->id}}" method="POST">
-      {{ method_field('DELETE') }}
-      {{ csrf_field() }}
-    </form>
-    <br><br>
-  </div>
-  <div class="row">
-    <h4>Students: </h4>
-    <table id="example2" class="table table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>e-mail</th>
-          <th>Options</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{-- @foreach ($test->users as $user) --}}
-        <tr>
-          <td>{{-- {{$user->name}} --}}</td>
-          <td>{{-- {{$user->email }} --}}</td>
-          <td>
-            <a class="btn btn-primary" href="profiles/{{-- {{$user->id}} --}}">View</a>
-            {{-- @if((Auth::user())->can('create articles')) --}}
-            {{-- <button class="btn btn-danger" onclick="document.getElementById('delete{{$user->id}}').submit();">Remove</button> --}}
-            <form id="delete{{-- {{$user->id}} --}}" action="{{-- {{ $controllerUrl }}/{{$user->id}} --}}" method="POST">
-              {{ method_field('DELETE') }}
-              {{ csrf_field() }}
-            </form>
-            {{-- @endif --}}
-          </td>
-        </tr>
-        {{-- @endforeach --}}
-      </tbody>
-      <tfoot>
-        <tr>
-          <th>Name</th>
-          <th>e-mail</th>
-          <th>Options</th>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-</div>
 @endsection

@@ -32,11 +32,13 @@
               {{$test->instructions}}
             </div>
           </div>
+          @if($test->image)
           <div class="row">
             <div class="col-md-12">
               <img src="/uploads/tests/{{$test->image}}">
             </div>
           </div>
+          @endif
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix">
@@ -180,7 +182,7 @@
       <!-- TABLE: LATEST ORDERS -->
       <div class="box box-info">
         <div class="box-header with-border">
-          <h3 class="box-title">Tests</h3>
+          <h3 class="box-title">Groups</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
@@ -193,21 +195,23 @@
             <table class="table no-margin">
               <thead>
                 <tr>
-                  <th>Test ID</th>
+                  <th>Group ID</th>
                   <th>Name</th>
                   <th>Status</th>
-                  <th>Due date</th>
+                  <th>Students</th>
                 </tr>
               </thead>
               <tbody>
+                @foreach($test->groups as $group)
                 <tr>
-                  <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                  <td>Call of Duty IV</td>
+                  <td><a href="groups/{{$group->id}}">{{$group->id}}</a></td>
+                  <td>{{$group->name}}</td>
                   <td><span class="label label-success">Shipped</span></td>
                   <td>
-                    <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
+                    <div class="sparkbar" data-color="#00a65a" data-height="20">{{$group->students->count()}}</div>
                   </td>
                 </tr>
+                @endforeach
               </tbody>
             </table>
           </div>

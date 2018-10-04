@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Test extends Model
 {
     // Mass assignment protection
-    protected $fillable = ['body', 'image'];
+    protected $fillable = ['name', 'description', 'instructions', 'image', 'due_at'];
 
     // Date enablement
     protected $dates = [
@@ -16,6 +16,17 @@ class Test extends Model
         'due_at'
     ];
 
+    const VALIDATION_RULES = [
+        'name'=>'required|max:191',
+        'description'=>'required',
+        'instructions'=>'required',
+        'due_at'=>'required',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 
     public function groups()
     {
@@ -24,6 +35,6 @@ class Test extends Model
 
     public function questions()
     {
-        return $this->hasMany('App\Question');
+        return $this->belongsToMany('App\Question');
     }
 }

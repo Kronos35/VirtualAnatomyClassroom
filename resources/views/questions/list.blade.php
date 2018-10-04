@@ -7,7 +7,7 @@ Questions' List
     @foreach ($questions as $question)
         <tr>
           <td>{{$question->name}}</td>
-          <td>{{Str_limit($question->description, $limit = 80, $end = '...') }} </td>
+          <td>{{Str_limit($question->body, $limit = 80, $end = '...') }} </td>
           <td>
             <a href="{{$controllerUrl}}/{{$question->id}}/edit">Edit</a>
             /

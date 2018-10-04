@@ -73,9 +73,16 @@ class GroupController extends Controller
     public function show(Group $group)
     {
         //
-        
+        $test_list = Auth::user()->tests;
+        $tests=[];
+        $tests['']='Select';
+        foreach ($test_list->toArray() as $t) {
+            $tests[$t['id']]=$t['name'];
+        }
+
         return View::make('groups.show')
             ->with('controllerUrl', $this->controllerUrl)
+            ->with('user_tests',$tests)
             ->with('group',$group);
     }
 

@@ -15,8 +15,8 @@ class CreateGroupTestTable extends Migration
     {
         Schema::create('group_test', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('group_id');
             $table->integer('test_id');
+            $table->integer('group_id');
             $table->timestamps();
         });
     }

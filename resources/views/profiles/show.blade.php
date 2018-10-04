@@ -39,8 +39,9 @@
                 <b>Friends</b> <a class="pull-right">13,287</a>
               </li>
             </ul>
-
+            @if($user != Auth::user())
             <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+            @endif
           </div>
           <!-- /.box-body -->
         </div>

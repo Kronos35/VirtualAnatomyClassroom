@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Image;
 use App\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 // use Illuminate\Support\Facades\View;
 
 class QuestionController extends Controller
@@ -65,6 +67,16 @@ class QuestionController extends Controller
     public function show(Question $question)
     {
         //
+        $test_list = Auth::user()->tests;
+        $tests=[];
+        $tests['']='Select';
+        foreach ($test_list->toArray() as $t) {
+            $tests[$t['id']]=$t['name'];
+        }
+        return view('questions.show')
+            ->with('question', $question)
+            ->with('user_tests', $tests)
+            ->with('controllerUrl', $this->controllerUrl);
     }
 
     /**
@@ -93,7 +105,26 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question = null)
     {
-        
+        // Check if $test is null or not
+        if (!isset($question)) {
+            $question = new Question;
+        }
+
+        // Validate request 
+        $this->validate($request, Question::VALIDATION_RULES);
+
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(300,300)->save(public_path('/uploads/questions/'.$filename));
+            $question->image = $filename;
+        }
+
+        $question->body = $request->body;
+        if($request->score) { $question->score = $request->score; }
+        $question->user_id = Auth::user()->id;
+        $question->save();
+        return redirect($this->controllerUrl.'/'.$question->id);
     }
 
     /**
@@ -105,5 +136,15 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         //
+    }
+
+    public function addTest(Question $question, Request $request)
+    {
+        // Add Test to group
+        DB::table('question_test')->insert([
+            'question_id' => $question->id,
+            'test_id' => $request->test_id
+        ]);
+        return redirect()->back();
     }
 }

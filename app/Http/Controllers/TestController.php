@@ -106,12 +106,7 @@ class TestController extends Controller
         }
 
         // Validate request 
-        $this->validate($request, [
-            'name'=>'required|max:191',
-            'description'=>'required',
-            'instructions'=>'required',
-            'due_at'=>'required',
-        ]);
+        $this->validate($request, Test::VALIDATION_RULES);
 
         if ($request->file('image')) {
             $image = $request->file('image');

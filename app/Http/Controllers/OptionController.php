@@ -8,26 +8,6 @@ use Illuminate\Http\Request;
 class OptionController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -36,28 +16,7 @@ class OptionController extends Controller
     public function store(Request $request)
     {
         //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Option  $option
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Option $option)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Option  $option
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Option $option)
-    {
-        //
+        return $this->update($request, null);
     }
 
     /**
@@ -67,9 +26,19 @@ class OptionController extends Controller
      * @param  \App\Option  $option
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Option $option)
+    public function update(Request $request, Option $option=null)
     {
         //
+        if (!$option) {
+            $option = new Option;
+        }
+
+        $option->question_id = $request->question_id;
+        $option->body = $request->body;
+        // dd($option);
+        $option->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -81,5 +50,8 @@ class OptionController extends Controller
     public function destroy(Option $option)
     {
         //
+        
+        
+        return redirect()->back();
     }
 }

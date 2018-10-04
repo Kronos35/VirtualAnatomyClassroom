@@ -264,17 +264,6 @@ return [
                 ],
             ]
         ],
-        'ACCOUNT SETTINGS',
-        [
-            'text' => 'Profile',
-            'url'  => '/profile',
-            'icon' => 'user',
-        ],
-        [
-            'text' => 'Change Password',
-            'url'  => '/profile/settings',
-            'icon' => 'lock',
-        ],
         // [
         //     'text'    => 'Multilevel',
         //     'icon'    => 'share',
