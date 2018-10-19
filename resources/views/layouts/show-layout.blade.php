@@ -5,7 +5,7 @@
   <section class="content">
     <div class="row">
       <div class="col-12">
-        <div class="box">
+        <div class="box box-info">
           <div class="box-header">
             <div class="box-title">
               @yield('card-header')

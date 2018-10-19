@@ -6,8 +6,8 @@ Tests' List
 @section('instance_body')
   @foreach ($tests as $test)
     <tr>
-      <td>{{$test->name}}</td>
-      <td>{{Str_limit($test->description, $limit = 80, $end = '...') }} </td>
+      <td>{{Str_limit(strip_tags($test->title), $limit = 80, $end = '...')}}</td>
+      <td>{{Str_limit(strip_tags($test->description), $limit = 80, $end = '...') }} </td>
       <td>
         <a href="{{$controllerUrl}}/{{$test->id}}/edit">Edit</a>
         /

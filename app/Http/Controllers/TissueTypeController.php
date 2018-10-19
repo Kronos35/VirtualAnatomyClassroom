@@ -20,14 +20,18 @@ class TissueTypeController extends Controller
     public function index()
     {
         //
-        $user=Auth::user();
-        if ($user) {
-            $tissueTypes=TissueType::paginate(10);
-            return View::make('tissue_types.list')
+        $tissueTypes=TissueType::paginate(10);
+
+        if (isset(request()->search)) {
+            $search = "%".request()->search."%";
+            $tissueTypes = TissueType::where('name', 'like', $search)->paginate('10');
+        } else {
+            $tissueTypes = TissueType::paginate('10');
+        }
+
+        return View::make('tissue_types.list')
             ->with('controllerUrl',$this->controllerUrl)
             ->with('tissueTypes',$tissueTypes);
-        }
-        return redirect('/login');
     }
 
     /**
@@ -76,21 +80,18 @@ class TissueTypeController extends Controller
     public function edit(Request $request, TissueType $tissueType=null)
     {
         //
-        $user=Auth::user();
-        if ($user) {
-            $tissue_types=TissueType::get(['id','name']);
-        
-            $tissueTypes=[];
-            $tissueTypes['']='Select';
-            foreach ($tissue_types->toArray() as $tt) {
-                $tissueTypes[$tt['id']]=$tt['name'];
-            }
-            return View::make('tissue_types.create')
+    
+        $tissue_types=TissueType::get(['id','name']);
+    
+        $tissueTypes=[];
+        $tissueTypes['']='Select';
+        foreach ($tissue_types->toArray() as $tt) {
+            $tissueTypes[$tt['id']]=$tt['name'];
+        }
+        return View::make('tissue_types.create')
             ->with('record',$tissueType)
             ->with('tissueTypes',$tissueTypes)
             ->with('controllerUrl',$this->controllerUrl);
-        }
-        return redirect('/login');
 
     }
 
@@ -104,25 +105,20 @@ class TissueTypeController extends Controller
     public function update(Request $request, $id=null)
     {
         //
-        $user=Auth::user();
-        if ($user) {
-            if ($id) {
-                $tissue_type=TissueType::find($id);
-            } else {
-                $tissue_type=new TissueType;
-            }
-    
-            $this->validate($request, [
-                'name'=>'required|max:191',
-                'description'=>'required',
-            ]);
-            $tissue_type->name=$request->name;
-            $tissue_type->tissue_type_id=$request->tissue_type_id;
-            $tissue_type->description=$request->description;
-            $tissue_type->save();
+        if ($id) {
+            $tissue_type=TissueType::find($id);
+        } else {
+            $tissue_type=new TissueType;
         }
-        //redirect
-        return redirect()->action('TissueTypeController@index')->with('status', 'Success!');
+
+        $this->validate($request, [
+            'name'=>'required|max:191',
+            'description'=>'required',
+        ]);
+        $tissue_type->name=$request->name;
+        $tissue_type->tissue_type_id=$request->tissue_type_id;
+        $tissue_type->description=$request->description;
+        $tissue_type->save();
     }
 
     /**
@@ -134,10 +130,7 @@ class TissueTypeController extends Controller
     public function destroy(TissueType $tissueType)
     {
         //
-        $user = Auth::user();
-        if ($user) {
-            $tissueType->delete();   
-        }
+        $tissueType->delete();
         return redirect($this->controllerUrl);
     }
 }

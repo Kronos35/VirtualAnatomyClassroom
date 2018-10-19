@@ -14,9 +14,9 @@
               <!-- SEARCH FORM -->
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 300px;">
-                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                  <input id="search" type="text" name="table_search" class="form-control pull-right" placeholder="Search">
                   <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-default" onclick="window.location.href='{{$controllerUrl}}?search='+$('#search').val()"><i class="fa fa-search"></i></button>
                     <button class="btn btn-success" type="submit" onclick="window.location.href='{{$controllerUrl}}/create'">
                       Create New
                     </button>

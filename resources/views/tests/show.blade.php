@@ -1,13 +1,9 @@
 @extends('layouts.master')
-@section('edit-button')
-<a class="btn btn-primary" href="{{ URL::to($controllerUrl) }}/{{$test->id}}/edit">Edit</a>
-@endsection
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    {{$test->name}}
-    <small>Administration panel</small>
+    <small>Tests Panel</small>
   </h1>
 </section>
 <!-- Main content -->
@@ -18,10 +14,20 @@
       <!-- TABLE: Questions -->
       <div class="box box-info">
         <div class="box-header with-border">
-          <h3 class="box-title">Instructions</h3>
+          <h3 class="box-title">{!! $test->title !!}</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
+            <div class="btn-group">
+              <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-wrench"></i></button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{{$controllerUrl}}/{{$test->id}}/edit">Edit test</a></li>
+                <li><a href="#">Delete test</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </div>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
           </div>
         </div>
@@ -29,21 +35,29 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
+              <h4>Description</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              {!!$test->description!!}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Instructions</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
               {!!$test->instructions!!}
             </div>
           </div>
-          @if($test->image)
-          <div class="row">
-            <div class="col-md-12">
-              <img src="/uploads/tests/{{$test->image}}">
-            </div>
-          </div>
-          @endif
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix">
           <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Answer New Test</a>
-          <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View all tests</a>
+          <a href="{{$controllerUrl}}/" class="btn btn-sm btn-default btn-flat pull-right">View all tests</a>
         </div>
         <!-- /.box-footer -->
       </div>

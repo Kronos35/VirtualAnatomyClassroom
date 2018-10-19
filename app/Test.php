@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Test extends Model
 {
     // Mass assignment protection
-    protected $fillable = ['name', 'description', 'instructions', 'image', 'due_at'];
+    protected $fillable = ['title', 'description', 'instructions', 'image', 'due_at'];
 
     // Date enablement
     protected $dates = [
@@ -17,7 +17,7 @@ class Test extends Model
     ];
 
     const VALIDATION_RULES = [
-        'name'=>'required|max:191',
+        'title'=>'required|max:191',
         'description'=>'required',
         'instructions'=>'required',
         'due_at'=>'required',

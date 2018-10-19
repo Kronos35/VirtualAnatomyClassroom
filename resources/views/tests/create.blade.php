@@ -2,9 +2,9 @@
 
 @section('card-header')
   @if(isset($record))
-      Update Test Type
+      Update Test
   @else
-      Create Test Type
+      Create new Test
   @endif
 @endsection
 
@@ -15,10 +15,10 @@
     {{ Form::open(['url' => $controllerUrl,'id' => 'create', 'enctype' => "multipart/form-data" ]) }}
   @endif
   @csrf
-    <div class="form-group {{ $errors->has('name') ? 'has-danger' : '' }}">
-      {{Form::label('name', 'Name')}}:
-      {{ Form::text('name', null, array('class' => $errors->has('name') ? 'form-control my-editor  is-invalid' : 'form-control my-editor')) }}
-      {!! $errors->first('name', '<p class="invalid-feedback">:message</p>') !!}
+    <div class="form-group {{ $errors->has('title') ? 'has-danger' : '' }}">
+      {{Form::label('title', 'Title')}}:
+      {{ Form::text('title', null, array('class' => $errors->has('title') ? 'form-control my-editor  is-invalid' : 'form-control my-editor')) }}
+      {!! $errors->first('title', '<p class="invalid-feedback">:message</p>') !!}
     </div>
     <br>
     <div class="form-group {{ $errors->has('description') ? 'has-danger' : '' }}">
@@ -37,12 +37,6 @@
       {{Form::label('due_at', 'Due at')}}:
       {{ Form::date('due_at', null, array('class' => $errors->has('due_at') ? 'form-control my-editor  is-invalid' : 'form-control my-editor')) }}
       {!! $errors->first('due_at', '<p class="invalid-feedback">:message</p>') !!}
-    </div>
-    <br>
-    <div class="form-group {{ $errors->has('description') ? 'has-danger' : '' }}">
-      {{Form::label('image', 'Add an image')}}:
-      {{Form::file('image', null, array('class' => $errors->has('image') ? 'form-control my-editor  is-invalid' : 'form-control my-editor')) }}
-      {!! $errors->first('image', '<p class="invalid-feedback">:message</p>') !!}
     </div>
     <br>
     @if( isset($record) )

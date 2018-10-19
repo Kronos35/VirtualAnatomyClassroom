@@ -23,14 +23,19 @@ class TissueController extends Controller
     public function index()
     {
         //
-        $user=Auth::user();
-        if($user){
-            $tissues=Tissue::paginate('10');
-            return View::make('tissues.list')
-                ->with('controllerTitle', $this->controllerTitle)
-                ->with('controllerUrl',$this->controllerUrl)
-                ->with('tissues',$tissues);
+        if (isset(request()->search)) {
+            $search = "%".request()->search."%";
+            $tissues = Tissue::where('name', 'like', $search)->paginate('10');
+        } else {
+            $tissues = Tissue::paginate('10');
         }
+
+
+        return View::make('tissues.list')
+            ->with('controllerTitle', $this->controllerTitle)
+            ->with('controllerUrl',$this->controllerUrl)
+            ->with('tissues',$tissues);
+    
         return redirect('/login');
     }
 

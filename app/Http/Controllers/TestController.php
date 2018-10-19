@@ -22,14 +22,15 @@ class TestController extends Controller
         //
         $user=Auth::user();
 
+        $search = (request()->has('search')) ? "%".request()->search."%" : null;
         if ($user->can('see all groups')) {
-            $tests = Test::paginate(10);
+            $tests = ($search) ? Test::where('title', 'like', $search)->paginate(10) : Test::paginate(10);
         } elseif ($user->can('create tests')) {
             $groups = $user->groups->pluck('id');
-            $tests = Test::whereIn('id', $groups)->paginate(10);
+            $tests = ($search) ? Test::whereIn('id', $groups)->where('title', 'like', $search)->paginate(10) : Test::whereIn('id', $groups)->paginate(10);
         } else {
             $groups = $user->classes->pluck('id');
-            $tests = Test::whereIn('id', $groups)->paginate(10);
+            $tests = ($search) ? Test::whereIn('id', $groups)->where('title', 'like', $search)->paginate(10) : Test::whereIn('id', $groups)->paginate(10);
         }
 
         return view('tests.list')
@@ -108,14 +109,7 @@ class TestController extends Controller
         // Validate request 
         $this->validate($request, Test::VALIDATION_RULES);
 
-        if ($request->file('image')) {
-            $image = $request->file('image');
-            $filename = time().'.'.$image->getClientOriginalExtension();
-            Image::make($image)->resize(300,300)->save(public_path('/uploads/tests/'.$filename));
-            $test->image = $filename;
-        }
-
-        $test->name = $request->name;
+        $test->title = $request->title;
         $test->description = $request->description;
         $test->instructions = $request->instructions;
         $test->user_id = Auth::user()->id;
