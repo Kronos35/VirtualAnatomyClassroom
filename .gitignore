@@ -1,5 +1,6 @@
 vendor/
 !resources/views/vendor
+!public/vendor
 node_modules/
 npm-debug.log
 
