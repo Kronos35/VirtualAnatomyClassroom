@@ -22,7 +22,7 @@ class MuscleController extends Controller
     public function index()
     {
         // Muscle type
-        $muscleType = TissueType::where('name', 'Muscles')->first();
+        $muscleType = TissueType::where('slug', 'musculos')->orWhere('slug', 'muscles')->first();
         
         // Accepted tissueTypes
         $muscleChildren = DB::table('tissue_types AS tt')
