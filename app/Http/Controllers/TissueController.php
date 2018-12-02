@@ -13,161 +13,134 @@ use Illuminate\Support\Facades\Session;
 
 class TissueController extends Controller
 {
-    private $controllerTitle = 'Tissues\'';
-    private $controllerUrl = '/tissues';
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-        if (isset(request()->search)) {
-            $search = "%".request()->search."%";
-            $tissues = Tissue::where('name', 'like', $search)->paginate('10');
-        } else {
-            $tissues = Tissue::paginate('10');
-        }
+  private $controllerTitle = 'Tissues\'';
+  private $controllerUrl = '/tissues';
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
+    //
+    $tissues = Tissue::search(request()->search);
 
 
-        return View::make('tissues.list')
-            ->with('controllerTitle', $this->controllerTitle)
-            ->with('controllerUrl',$this->controllerUrl)
-            ->with('tissues',$tissues);
-    
-        return redirect('/login');
+    return View::make('tissues.list')
+      ->with('controllerTitle', $this->controllerTitle)
+      ->with('controllerUrl',$this->controllerUrl)
+      ->with('tissues',$tissues);
+
+    return redirect('/login');
+  }
+
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function create(Request $request)
+  {
+    //
+    return $this->edit($request,null);
+  }
+
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function store(Request $request)
+  {
+    $this->update($request, null);
+    return redirect()->action('TissueController@index')->with('status', 'Success!');
+  }
+
+  /**
+   * Display the specified resource.
+   *
+   * @param  \App\Tissue  $tissue
+   * @return \Illuminate\Http\Response
+   */
+  public function show(Tissue $tissue)
+  {
+    //
+    return View::make('tissues.show')
+        ->with('controllerUrl',$this->controllerUrl)
+        ->with('tissue',$tissue);
+  }
+  
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  \App\Tissue  $tissue
+   * @return \Illuminate\Http\Response
+   */
+  public function edit(Request $request, Tissue $tissue=null)
+  {
+    // Retrieve all tissue types
+    $tissue_types=TissueType::get(['id','name']);
+
+    // Format all tissue types for processing
+    $tissueTypes=[];
+    $tissueTypes['']='Select';
+    foreach ($tissue_types->toArray() as $tt) {
+      $tissueTypes[$tt['id']]=$tt['name'];
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
-    {
-        //
-        return $this->edit($request,null);
+    // Retrieve all zones
+    $zone_list=Zone::get(['id','name']);
+    // Format all zones for processing
+    $zones=[];
+    $zones['']='Select';
+    foreach ($zone_list->toArray() as $z) {
+      $zones[$z['id']]=$z['name'];
+    }
+    return View::make('tissues.create')
+      ->with('tissueTypes',$tissueTypes)
+      ->with('record',$tissue)
+      ->with('zones',$zones)
+      ->with('controllerUrl',$this->controllerUrl);
+  }
+
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  \App\Tissue  $tissue
+   * @return \Illuminate\Http\Response
+   */
+  public function update(Request $request, $id=null)
+  {
+    //
+    $this->validate($request, Tissue::rules());
+
+    if ($id) {
+      $tissue = Tissue::find($id);
+    } else {
+      $tissue = new Tissue;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $this->update($request, null);
-        return redirect()->action('TissueController@index')->with('status', 'Success!');
+    $tissue->store($request);
+
+    //redirect
+    if ($id) {
+      return redirect()->action('TissueController@index')->with('status', 'Success!');
     }
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Tissue  $tissue
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tissue $tissue)
-    {
-        //
-        return View::make('tissues.show')
-            ->with('controllerUrl',$this->controllerUrl)
-            ->with('tissue',$tissue);
-    }
-    
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Tissue  $tissue
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Request $request, Tissue $tissue=null)
-    {
-        // Retrieve all tissue types
-        $tissue_types=TissueType::get(['id','name']);
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  \App\Tissue  $tissue
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy(Tissue $tissue)
+  {
+    //
+    $tissue->delete();
 
-        // Format all tissue types for processing
-        $tissueTypes=[];
-        $tissueTypes['']='Select';
-        foreach ($tissue_types->toArray() as $tt) {
-            $tissueTypes[$tt['id']]=$tt['name'];
-        }
-
-        // Retrieve all zones
-        $zone_list=Zone::get(['id','name']);
-        // Format all zones for processing
-        $zones=[];
-        $zones['']='Select';
-        foreach ($zone_list->toArray() as $z) {
-            $zones[$z['id']]=$z['name'];
-        }
-        return View::make('tissues.create')
-            ->with('tissueTypes',$tissueTypes)
-            ->with('record',$tissue)
-            ->with('zones',$zones)
-            ->with('controllerUrl',$this->controllerUrl);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tissue  $tissue
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id=null)
-    {
-        //
-        $user=Auth::user();
-        if ($id) {
-            $tissue=Tissue::find($id);
-            $slug = $tissue->slug;
-        } else {
-            $tissue=new Tissue;
-            //Slug construction            
-            $slug = str_replace(' ', '_', $request->name);
-            $slugFlag = Tissue::where('slug', $slug)->get();
-            if ($slugFlag->count() > 0) {
-                $slug = str_replace(' ', '_', $request->name).'_'.($slugFlag->count()+1);
-            }
-        }
-
-        $this->validate($request, [
-            'name'=>'required|max:191',
-            'tissue_type_id'=>'required',
-            'zone_id'=>'required',
-            'content'=>'required',
-            'description'=>'required',
-        ]);
-
-        $tissue->name = $request->name;
-        $tissue->tissue_type_id = $request->tissue_type_id;
-        $tissue->zone_id = $request->zone_id;
-        $tissue->content = $request->content;
-        $tissue->description = $request->description;
-        $tissue->slug = $slug;
-        $tissue->save();
-
-        //redirect
-        if ($id) {
-            return redirect()->action('TissueController@index')->with('status', 'Success!');
-        }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Tissue  $tissue
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Tissue $tissue)
-    {
-        //
-        $user = Auth::user();
-        if ($user->can('edit articles')) {
-            $tissue->delete();
-        }
-        return redirect($this->controllerUrl);
-    }
+    return redirect($this->controllerUrl);
+  }
 }

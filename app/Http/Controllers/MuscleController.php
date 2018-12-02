@@ -12,109 +12,90 @@ use Illuminate\Support\Facades\View;
 
 class MuscleController extends Controller
 {
-    private $controllerTitle = 'Muscles\'';
-    private $controllerUrl = '/muscles';
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        // Muscle type
-        $muscleType = TissueType::where('slug', 'musculos')->orWhere('slug', 'muscles')->first();
-        
-        // Accepted tissueTypes
-        $muscleChildren = DB::table('tissue_types AS tt')
-            ->where('tt.id', $muscleType->id)
-            ->join('tissue_types AS tt2', 'tt.id', '=', 'tt2.tissue_type_id')
-            ->get()
-            ->pluck('id');
+  private $controllerTitle = 'Muscles\'';
+  private $controllerUrl = '/muscles';
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
+    
+    $muscles =Tissue::searchMuscles(request()->search);
 
-        $acceptedTissueTypes = DB::table('tissue_types AS tt')
-            ->where('tt.id', $muscleType->id)
-            ->orWhere('tt.tissue_type_id', $muscleType->id)
-            ->orWhereIn('tt.tissue_type_id', $muscleChildren)
-            ->join('tissue_types AS tt2', 'tt.id', '=', 'tt2.tissue_type_id')
-            ->get()
-            ->pluck('id');
+    return View::make('tissues.list')
+      ->with('controllerTitle',$this->controllerTitle)
+      ->with('controllerUrl',$this->controllerUrl)
+      ->with('tissues',$muscles);
+  }
 
-        
-        $muscles =Tissue::whereIn('tissue_type_id', $acceptedTissueTypes)
-            ->paginate(10);
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function create(Request $request)
+  {
+    //
+    return redirect('/tissues/create');
+  }
 
-        return View::make('tissues.list')
-            ->with('controllerTitle',$this->controllerTitle)
-            ->with('controllerUrl',$this->controllerUrl)
-            ->with('tissues',$muscles);
-    }
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function store(Request $request)
+  {
+    //
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
-    {
-        //
-        return redirect('/tissues/create');
-    }
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function show($id)
+  {
+    //
+    return redirect('/tissues/'.$id);
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function edit(Request $request, $id)
+  {
+    //
+    return redirect('/tissues/'.$id.'/edit');
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-        return redirect('/tissues/'.$id);
-    }
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function update(Request $request, $id)
+  {
+    //
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Request $request, $id)
-    {
-        //
-        return redirect('/tissues/'.$id.'/edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy($id)
+  {
+    //
+  }
 }

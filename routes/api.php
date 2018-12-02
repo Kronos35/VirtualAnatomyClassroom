@@ -22,7 +22,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('muscles','Api\MuscleController@index');
+Route::get('muscles/{slug}','Api\MuscleController@show');
 Route::get('bones','Api\BoneController@index');
+Route::get('bones/{slug}','Api\BoneController@show');
 Route::resource('tissues','Api\TissueController')->only('index','show');
 Route::get('tissues/find/{name}','Api\TissueController@findByName');
 Route::resource('tissue-types','Api\TissueTypeController')->only('index','show');

@@ -10,93 +10,30 @@ use App\Http\Controllers\Controller;
 
 class MuscleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-        $tissues =Tissue::get();
-        $muscles = new Collection;
-        foreach ($tissues as $tissue) {
-            $tissueType = $tissue->tissue_type;
-            while ($tissueType->tissue_type) {
-                $tissueType=$tissueType->tissue_type;
-                if ($tissueType->name == 'Muscles') {
-                    $muscles->push($tissue);
-                }
-                $tissueType->tissue_type;
-            }
-        }
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
+    //
+    $muscles =Tissue::getMuscles()->get();
 
-        return $muscles;
-    }
+    return $muscles->toJson(JSON_UNESCAPED_UNICODE);
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+  /**
+   * Return the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function show($slug)
+  {
+    //
+    $muscle =Tissue::getMuscles()->where('slug', $slug)->first();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    return $muscle->toJson(JSON_UNESCAPED_UNICODE);
+  }
 }
