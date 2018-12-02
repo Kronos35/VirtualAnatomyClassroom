@@ -46,6 +46,7 @@ Route::group(['middleware'=>['auth']], function ()
 	// "Public" Test routes
 	Route::get('/tests', 'TestController@index')->name('tests');
 	Route::get('/tests/{test}', 'TestController@show');
+	Route::get('/tests/{test}/answer', 'TestController@answer');
 
 	// "Public" Lecture routes
 	Route::get('/lectures', 'LectureController@index')->name('lectures');

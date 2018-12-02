@@ -134,7 +134,9 @@ class TestController extends Controller
      */
     public function answer(Request $request)
     {
-        dd($request);
+        return view('tests.answer')
+            ->width('controllerUrl', $this->controllerUrl)
+            ->with('test', $test);
     }
 
     /**
