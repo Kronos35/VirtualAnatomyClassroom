@@ -30,8 +30,6 @@ class TissueController extends Controller
       ->with('controllerTitle', $this->controllerTitle)
       ->with('controllerUrl',$this->controllerUrl)
       ->with('tissues',$tissues);
-
-    return redirect('/login');
   }
 
   /**
@@ -67,8 +65,8 @@ class TissueController extends Controller
   {
     //
     return View::make('tissues.show')
-        ->with('controllerUrl',$this->controllerUrl)
-        ->with('tissue',$tissue);
+      ->with('controllerUrl',$this->controllerUrl)
+      ->with('tissue',$tissue);
   }
   
   /**
@@ -141,6 +139,6 @@ class TissueController extends Controller
     //
     $tissue->delete();
 
-    return redirect($this->controllerUrl);
+    return redirect()->action('TissueController@index')->with('status', 'Success!');
   }
 }

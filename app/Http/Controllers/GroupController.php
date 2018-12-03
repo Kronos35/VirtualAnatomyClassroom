@@ -77,7 +77,7 @@ class GroupController extends Controller
         $tests=[];
         $tests['']='Select';
         foreach ($test_list->toArray() as $t) {
-            $tests[$t['id']]=$t['name'];
+            $tests[$t['id']]=$t['title'];
         }
 
         return View::make('groups.show')

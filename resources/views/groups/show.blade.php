@@ -223,7 +223,7 @@
                 @foreach($group->tests as $test)
                 <tr>
                   <td><a href="/tests/{{$test->id}}">{{ $test->id }}</a></td>
-                  <td>{{ $test->name }}</td>
+                  <td>{{ $test->title }}</td>
                   <td>
                     @if($test->due_at->gt(date('Y-m-d H:i:s')))
                     <span class="label label-success">Pending</span>
